@@ -1,0 +1,75 @@
+.serviceSection {
+  width: 90%;
+  margin: 30px auto;
+  border-radius: 30px;
+  padding: 30px 20px;
+  text-align: left;
+}
+
+/* 케이터링 */
+.cateringSection {
+  background-color: #edfafe;
+}
+
+.serviceLabel {
+  display: block;
+  color: #49ccf9;
+  font-size: 12px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+.serviceTitle {
+  font-size: 24px;
+  font-family: Inter, sans-serif;
+  font-weight: 800;
+  line-height: 1.4;
+  color: #333333;
+  margin: 10px 0;
+  word-wrap: break-word;
+}
+
+.serviceDivider {
+  width: 60px;
+  height: 3px;
+  border-radius: 3px;
+  background-color: #49ccf9;
+  margin: 15px 0;
+}
+
+.serviceDesc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #292d34;
+  margin-bottom: 20px;
+}
+
+.serviceImage {
+  width: 100%;
+  height: 200px;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+/* To-go Bag */
+.togoSection {
+  background-color: #e9ffe9;
+}
+
+.serviceLabelTogo {
+  display: block;
+  color: #6edb81;
+  font-size: 12px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+.togoDivider {
+  background-color: #6edb81;
+} 

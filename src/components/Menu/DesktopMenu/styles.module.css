@@ -90,15 +90,14 @@
 }
 
 .menuCell {
-  width: 150px; /* 고정된 너비 */
+  width: 150px;
   display: flex;
   align-items: center;
-  justify-content: left; /* 텍스트 가운데 정렬 */
-  line-height: 1.2; /* 줄 간격 조정 */
+  justify-content: left;
+  line-height: 1.2;
   font-weight: 500;
-  font-size: 16px; /* 기본 글자 크기 설정 */
-  text-align: center; /* 텍스트 가운데 정렬 */
-  /*overflow: hidden; /* 넘치는 텍스트 숨김 */
-  white-space: nowrap; /* 줄바꿈 방지 */
-  text-overflow: ellipsis; /* 넘치는 텍스트에 "..." 표시 */
-}
+  font-size: 16px;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+} 

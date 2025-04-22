@@ -1,0 +1,37 @@
+.contactSection {
+  padding: 30px 20px;
+  background-color: #fef7f7;
+  text-align: center;
+}
+
+.contactTitle {
+  font-size: 24px;
+  font-weight: 800;
+  color: #333333;
+  margin-bottom: 15px;
+}
+
+.contactDescription {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #666666;
+  margin-bottom: 25px;
+}
+
+.contactButton {
+  background-color: #ff9494;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 30px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  max-width: 200px;
+  transition: background-color 0.3s ease;
+}
+
+.contactButton:hover {
+  background-color: #ff7a7a;
+} 

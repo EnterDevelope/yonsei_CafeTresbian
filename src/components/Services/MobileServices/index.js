@@ -1,11 +1,9 @@
 import React from 'react';
-import styles from './Services.module.css';
+import styles from './styles.module.css';
 
-function Services() {
+const MobileServices = () => {
   return (
-    // 상위 컨테이너에 id="services" 추가
     <section id="services">
-      {/* 케이터링 섹션 */}
       <section className={`${styles.serviceSection} ${styles.cateringSection}`}>
         <span className={styles.serviceLabel}>Service</span>
         <h2 className={styles.serviceTitle}>
@@ -16,10 +14,8 @@ function Services() {
         <div className={styles.serviceDivider} />
         <p className={styles.serviceDesc}>
           동아리 모임, 세미나, 행사 등 모임 형태에 맞춘
-          <br />
           맞춤형 디저트, 음료 제공 서비스
         </p>
-        <div className={styles.serviceCircle} />
         <img
           src="catering.png"
           alt="케이터링 서비스"
@@ -27,7 +23,6 @@ function Services() {
         />
       </section>
 
-      {/* To-go Bag 섹션 */}
       <section className={`${styles.serviceSection} ${styles.togoSection}`}>
         <span className={styles.serviceLabelTogo}>service</span>
         <h2 className={styles.serviceTitle}>
@@ -39,7 +34,6 @@ function Services() {
         <p className={styles.serviceDesc}>
           이동이 잦은 학생 및 교직원을 위한 간편 포장 서비스
         </p>
-        <div className={styles.serviceCircleTogo} />
         <img
           src="togo.png"
           alt="To-go Bag 서비스"
@@ -48,6 +42,6 @@ function Services() {
       </section>
     </section>
   );
-}
+};
 
-export default Services;
+export default MobileServices; 

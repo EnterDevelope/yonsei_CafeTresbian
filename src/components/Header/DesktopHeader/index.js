@@ -1,8 +1,7 @@
 import React from 'react';
-import styles from './Header.module.css';
+import styles from './styles.module.css';
 
-function Header({ onContactClick }) {
-  // 스크롤 이동 함수 (홈 → 최상단, 서비스 안내/메뉴 안내 → 해당 섹션)
+const DesktopHeader = ({ onContactClick }) => {
   const scrollToSection = (id) => {
     if (id === 'top') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -17,7 +16,6 @@ function Header({ onContactClick }) {
   return (
     <header className={styles.header}>
       <div className={styles.headerContainer}>
-        {/* 왼쪽 로고 */}
         <div className={styles.logoArea}>
           <img
             src="cafe_logo.png"
@@ -26,7 +24,6 @@ function Header({ onContactClick }) {
           />
         </div>
 
-        {/* 중앙 메뉴 (홈/서비스 안내/메뉴 안내) */}
         <nav className={styles.nav}>
           <ul className={styles.navList}>
             <li onClick={() => scrollToSection('top')}>홈</li>
@@ -35,7 +32,6 @@ function Header({ onContactClick }) {
           </ul>
         </nav>
 
-        {/* 오른쪽 버튼 (Contact us, Log in) */}
         <div className={styles.actionBtns}>
           <button
             type="button"
@@ -51,6 +47,6 @@ function Header({ onContactClick }) {
       </div>
     </header>
   );
-}
+};
 
-export default Header;
+export default DesktopHeader; 

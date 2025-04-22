@@ -1,0 +1,98 @@
+.menuSection {
+  padding: 20px;
+  background-color: #fef7f7;
+}
+
+.menuTitle {
+  font-size: 24px;
+  font-weight: 800;
+  color: #333333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.menuTabs {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.menuTab {
+  padding: 8px 16px;
+  border: none;
+  background: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.menuTab.active {
+  color: #ff9494;
+  position: relative;
+}
+
+.menuTab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ff9494;
+}
+
+.menuList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menuItem {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.menuItemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.menuName {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.menuPrice {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ff9494;
+}
+
+.menuItemDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menuKoreanName {
+  font-size: 14px;
+  color: #666;
+}
+
+.menuType {
+  font-size: 12px;
+  color: #999;
+  padding: 4px 8px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+} 

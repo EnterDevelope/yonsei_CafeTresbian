@@ -1,21 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import styles from './Menu.module.css';
+import styles from './styles.module.css';
 
-function adjustFontSize() {
-  const cells = document.querySelectorAll(`.${styles.menuCell}`);
-  cells.forEach((cell) => {
-    let fontSize = parseInt(window.getComputedStyle(cell).fontSize, 10);
-    while (cell.scrollWidth > cell.offsetWidth && fontSize > 10) {
-      fontSize -= 1; // 글자 크기를 줄임
-      cell.style.fontSize = `${fontSize}px`;
-    }
-  });
-}
-
-function Menu() {
+const DesktopMenu = () => {
   const [activeTab, setActiveTab] = useState('Coffee');
   const [isAnimating, setIsAnimating] = useState(false);
-  
+
   const menuData = {
     Coffee: [
       { name: 'Espresso', koreanName: '에스프레소', price: '1.5', type: 'Hot / Ice' },
@@ -54,16 +43,25 @@ function Menu() {
       setTimeout(() => {
         setActiveTab(tabName);
         setIsAnimating(false);
-      }, 500); // 애니메이션 시간과 동일하게 설정
+      }, 500);
     }
   };
 
   useEffect(() => {
+    const adjustFontSize = () => {
+      const cells = document.querySelectorAll(`.${styles.menuCell}`);
+      cells.forEach((cell) => {
+        let fontSize = parseInt(window.getComputedStyle(cell).fontSize, 10);
+        while (cell.scrollWidth > cell.offsetWidth && fontSize > 10) {
+          fontSize -= 1;
+          cell.style.fontSize = `${fontSize}px`;
+        }
+      });
+    };
+
     adjustFontSize();
     window.addEventListener('resize', adjustFontSize);
-    return () => {
-      window.removeEventListener('resize', adjustFontSize);
-    };
+    return () => window.removeEventListener('resize', adjustFontSize);
   }, []);
 
   return (
@@ -97,6 +95,6 @@ function Menu() {
       </div>
     </section>
   );
-}
+};
 
-export default Menu;
+export default DesktopMenu; 
