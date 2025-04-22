@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# 연세대학교 카페 트레비앙 웹사이트
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+연세대학교 카페 트레비앙의 공식 웹사이트입니다. React를 사용하여 개발되었으며, 반응형 디자인으로 모바일과 데스크톱 환경 모두에서 최적화된 사용자 경험을 제공합니다.
 
-## Available Scripts
+## 주요 기능
 
-In the project directory, you can run:
+- 반응형 디자인 (모바일/데스크톱)
+- 메뉴 정보 제공
+- 카페 운영 시간 및 위치 정보
+- 연락처 정보
+- 모던한 UI/UX
 
-### `npm start`
+## 기술 스택
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React
+- CSS Modules
+- GitHub Pages (배포)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 프로젝트 구조
 
-### `npm test`
+```
+src/
+  components/
+    Header/          # 헤더 컴포넌트 (모바일/데스크톱)
+    Hero/            # 히어로 섹션 (모바일/데스크톱)
+    Menu/            # 메뉴 섹션 (모바일/데스크톱)
+    Services/        # 서비스 섹션
+    Contact/         # 연락처 섹션
+    Footer/          # 푸터 컴포넌트 (모바일/데스크톱)
+  shared/
+    hooks/           # 커스텀 훅
+  assets/            # 이미지 및 리소스
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 설치 및 실행
 
-### `npm run build`
+1. 저장소 클론
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+git clone [repository-url]
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. 의존성 설치
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm install
+```
 
-### `npm run eject`
+3. 개발 서버 실행
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. 프로덕션 빌드
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm run build
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+5. GitHub Pages 배포
 
-## Learn More
+```bash
+npm run deploy
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 배포
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+이 프로젝트는 GitHub Pages를 통해 배포됩니다:
+[https://a123123.github.io/yonsei_CafeTresbian/](https://a123123.github.io/yonsei_CafeTresbian/)
 
-### Code Splitting
+## 라이센스
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+이 프로젝트는 연세대학교 카페 트레비앙의 자산입니다.
