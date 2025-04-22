@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/yonsei_CafeTresbian/static/css/main.ec60e862.css",
+    "main.js": "/yonsei_CafeTresbian/static/js/main.0eafa1c1.js",
+    "index.html": "/yonsei_CafeTresbian/index.html",
+    "main.ec60e862.css.map": "/yonsei_CafeTresbian/static/css/main.ec60e862.css.map",
+    "main.0eafa1c1.js.map": "/yonsei_CafeTresbian/static/js/main.0eafa1c1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ec60e862.css",
+    "static/js/main.0eafa1c1.js"
+  ]
+}
