@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/yonsei_CafeTresbian/static/css/main.f5837172.css",
-    "main.js": "/yonsei_CafeTresbian/static/js/main.4187faf5.js",
+    "main.css": "/yonsei_CafeTresbian/static/css/main.a959c19e.css",
+    "main.js": "/yonsei_CafeTresbian/static/js/main.21e77d6e.js",
     "index.html": "/yonsei_CafeTresbian/index.html",
-    "main.f5837172.css.map": "/yonsei_CafeTresbian/static/css/main.f5837172.css.map",
-    "main.4187faf5.js.map": "/yonsei_CafeTresbian/static/js/main.4187faf5.js.map"
+    "main.a959c19e.css.map": "/yonsei_CafeTresbian/static/css/main.a959c19e.css.map",
+    "main.21e77d6e.js.map": "/yonsei_CafeTresbian/static/js/main.21e77d6e.js.map"
   },
   "entrypoints": [
-    "static/css/main.f5837172.css",
-    "static/js/main.4187faf5.js"
+    "static/css/main.a959c19e.css",
+    "static/js/main.21e77d6e.js"
   ]
 }
