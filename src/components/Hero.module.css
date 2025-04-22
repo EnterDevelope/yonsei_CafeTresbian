@@ -1,0 +1,120 @@
+.heroSection {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  margin-top: 80px; /* 헤더 높이 고려 */
+  overflow: hidden;
+}
+
+/* 상단 컨테이너: 텍스트 + 우측 이미지 */
+.heroContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+/* 왼쪽 텍스트 영역 */
+.textArea {
+  flex: 0 0 50%;
+}
+
+.heroTitle {
+  font-size: 44px;          /* 폰트 크기 약간 축소 */
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 1rem;
+  color: #222;
+}
+
+.heroDesc {
+  font-size: 15px;          /* 조금 더 작게 */
+  line-height: 1.6;
+  color: #444;
+  margin: 0 0 1.5rem;
+}
+
+/* Contact us 버튼: 길이 축소 */
+.contactButton {
+  background-color: #003087;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.25rem; /* 버튼 padding 줄여서 길이 축소 */
+  border-radius: 8px;
+  box-shadow: 0px 3px 10px rgba(0, 75, 212, 0.5);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.contactButton:hover {
+  background-color: #002060;
+}
+
+/* 우측 이미지 */
+.imageArea {
+  position: relative;
+  flex: 0 0 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 블롭 이미지 크기 축소 */
+.blobImg {
+  position: absolute;
+  top: -90px;     /* 디자인에 맞춰 미세 조정 */
+  right: -280px;   /* 디자인에 맞춰 미세 조정 */
+  width: 460px;   /* 블롭 크기 축소 */
+  height: auto;
+  z-index: 0;
+  object-fit: cover;
+}
+
+/* 카페 내부 사진 */
+.cafeImage {
+  position: relative;
+  z-index: 2;
+  width: 450px;   /* 사진 크기도 축소 */
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* 하단 영역 (생협 로고, 운영, 운영시간, 위치) */
+.heroBottom {
+  width: 90%;
+  max-width: 1200px;
+  margin: 2rem auto;  /* 위아래 간격 */
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly; /* 3등분 */
+  text-align: center;
+}
+
+/* 생협 로고 */
+.coopLogo {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* 가운데 "운영" */
+.operationTitle {
+  font-size: 16px;
+  color: #999;
+}
+
+/* 운영시간, 위치 */
+.operationInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 10px;
+  color: #666;
+  line-height: 1.4;
+  z-index: 1;
+}

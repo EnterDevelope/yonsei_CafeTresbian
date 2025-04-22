@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Pretendard+Variable:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Helvetica:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;800&display=swap');
+
+/* 전역 스타일 */
+body {
+  margin: 0;
+  padding: 0;
+}

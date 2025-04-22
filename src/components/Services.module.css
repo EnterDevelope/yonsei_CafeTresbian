@@ -1,0 +1,118 @@
+.serviceSection {
+  width: 90%;
+  /*height: 300px;*/
+  max-width: 1300px;
+  margin: 70px auto;
+  border-radius: 60px;
+  position: relative;
+  padding: 70px;
+  text-align: left;
+}
+
+/* 케이터링 */
+.cateringSection {
+  background-color: #edfafe;
+}
+
+.serviceLabel {
+  display: block;
+  color: #49ccf9;
+  font-size: 12px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.serviceTitle {
+  font-size: 40px;
+  font-family: Inter, sans-serif;
+  font-weight: 800;
+  line-height: 68px;
+  color: #333333;
+  margin: 10px 0;
+  max-width: 400px;
+  word-wrap: break-word;
+}
+
+.serviceDivider {
+  width: 100px;
+  height: 5px;
+  border-radius: 5px;
+  background-color: #49ccf9;
+  margin: 20px 0;
+}
+
+.serviceDesc {
+  font-size: 14px;
+  line-height: 25px;
+  color: #292d34;
+}
+
+
+.serviceImage {
+  position: absolute;
+  top: 35px;
+  left: auto; /* 초기값 */
+  right: 65px; /* 부모 요소의 오른쪽 끝을 기준으로 위치 설정 */
+  width: 500px;
+  max-height: 300px;
+  border-radius: 20px;
+  object-fit: cover;
+  transition: clip-path 0.3s ease, left 0.3s ease; /* 부드러운 전환 효과 */
+}
+
+/* 창 크기가 줄어들 때 이미지가 텍스트 영역까지만 이동 */
+@media (max-width: 1024px) {
+  .serviceImage {
+    left: calc(430px + 40px); /* 텍스트의 max-width와 여백을 기준으로 고정 */
+    right: auto; /* right를 제거 */
+    clip-path: inset(0 0 0 0); /* 잘리지 않음 */
+  }
+}
+
+@media (max-width: 768px) {
+  .serviceImage {
+    left: calc(430px + 40px); /* 텍스트 영역에 닿으면 멈춤 */
+    clip-path: inset(0 50px 0 0); /* 오른쪽에서 50px 잘림 */
+  }
+}
+
+@media (max-width: 480px) {
+  .serviceImage {
+    left: calc(430px + 40px); /* 텍스트 영역에 닿으면 멈춤 */
+    clip-path: inset(0 100px 0 0); /* 오른쪽에서 100px 잘림 */
+  }
+}
+
+/* To-go Bag */
+.togoSection {
+  background-color: #e9ffe9;
+}
+
+.serviceLabelTogo {
+  display: block;
+  color: #6edb81;
+  font-size: 12px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.togoDivider {
+  background-color: #6edb81;
+}
+
+
+.serviceImage2 {
+  position: absolute;
+  top: 30px;
+  left: 800px;
+  width: 400px;
+  height: 280px;
+  border-radius: 20px;
+  object-fit: cover;
+}
