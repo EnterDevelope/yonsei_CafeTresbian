@@ -6,7 +6,7 @@ const DesktopFooter = () => {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.logoSection}>
-          <img src="/images/company_logo.png" alt="연세대학교 생활협동조합" className={styles.logo} />
+          <img src="/company_logo.png" alt="연세대학교 생활협동조합" className={styles.logo} />
         </div>
         <div className={styles.infoSection}>
           <p>상호명: 연세대학교 생활협동조합 | 이사장: 김용호 | 개인정보관리책임자 : 권훈</p>
