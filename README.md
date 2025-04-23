@@ -66,8 +66,7 @@ npm run deploy
 
 ## 배포
 
-이 프로젝트는 GitHub Pages를 통해 배포됩니다:
-[https://a123123.github.io/yonsei_CafeTresbian/](https://a123123.github.io/yonsei_CafeTresbian/)
+이 프로젝트는 GitHub Pages를 통해 배포됩니다[https://enterdevelope.github.io/yonsei_CafeTresbian/](https://enterdevelope.github.io/yonsei_CafeTresbian/)
 
 ## 라이센스
 
