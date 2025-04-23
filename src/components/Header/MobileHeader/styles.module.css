@@ -24,7 +24,7 @@
 }
 
 .logoImg {
-  width: 120px;
+  width: 100px;
   height: auto;
   object-fit: contain;
 }
@@ -37,6 +37,7 @@
   position: relative;
   cursor: pointer;
   padding: 0;
+  margin-right: 40px;
 }
 
 .menuIcon {
@@ -57,6 +58,7 @@
   height: 2px;
   background-color: #333;
   transition: transform 0.3s ease;
+  left: 0;
 }
 
 .menuIcon::before {

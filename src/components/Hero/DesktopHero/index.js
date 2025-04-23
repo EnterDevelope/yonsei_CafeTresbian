@@ -22,12 +22,12 @@ const DesktopHero = ({ onContactClick }) => {
 
         <div className={styles.imageArea}>
           <img
-            src="hero_back_image.png"
+            src={process.env.PUBLIC_URL + '/hero_back_image.png'}
             alt="Blue Gradient Blob"
             className={styles.blobImg}
           />
           <img
-            src="cafe_image.png"
+            src={process.env.PUBLIC_URL + '/cafe_image.png'}
             alt="카페 내부"
             className={styles.cafeImage}
           />
@@ -36,7 +36,7 @@ const DesktopHero = ({ onContactClick }) => {
 
       <div className={styles.heroBottom}>
         <img
-          src="company_logo.png"
+          src={process.env.PUBLIC_URL + '/company_logo.png'}
           alt="Icon"
           className={styles.coopLogo}
         />

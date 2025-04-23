@@ -4,48 +4,50 @@
   background-color: #fff;
   margin-top: 60px;
   overflow: hidden;
+  padding-bottom: 2rem;
 }
 
 .heroContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
   width: 90%;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 2rem 0;
 }
 
 .textArea {
-  text-align: center;
-  margin-bottom: 30px;
+  flex: 1 1 55%;
+  min-width: 0;
+  text-align: left;
 }
 
 .heroTitle {
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 700;
-  line-height: 1.2;
-  margin: 0 0 1rem;
+  line-height: 1.3;
+  margin: 0 0 0.7rem;
   color: #222;
 }
 
 .heroDesc {
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.6;
   color: #444;
-  margin: 0 0 1.5rem;
-  padding: 0 20px;
+  margin: 0 0 1rem;
 }
 
 .contactButton {
   background-color: #003087;
   color: #fff;
   border: none;
-  padding: 0.75rem 2rem;
-  border-radius: 8px;
-  box-shadow: 0px 3px 10px rgba(0, 75, 212, 0.5);
-  font-size: 14px;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  box-shadow: 0px 2px 8px rgba(0, 75, 212, 0.4);
+  font-size: 13px;
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 80%;
-  max-width: 250px;
 }
 
 .contactButton:hover {
@@ -54,58 +56,54 @@
 
 .imageArea {
   position: relative;
-  width: 100%;
-  height: 250px;
-  margin-bottom: 30px;
+  flex: 1 1 40%;
+  min-width: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .blobImg {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  top: -40px;
+  right: -80px;
+  width: 200px;
+  height: auto;
   z-index: 0;
-  opacity: 0.7;
+  object-fit: cover;
+  opacity: 0.9;
 }
 
 .cafeImage {
   position: relative;
   z-index: 2;
-  width: 90%;
-  height: 200px;
-  border-radius: 12px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
   object-fit: cover;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 .heroBottom {
   width: 90%;
-  margin: 0 auto;
-  padding: 20px 0;
+  margin: 1.5rem auto 0;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 20px;
+  justify-content: center;
+  gap: 10px 25px;
   text-align: center;
+  padding: 1rem 0;
 }
 
 .coopLogo {
-  width: 100px;
+  width: 80px;
   height: auto;
   object-fit: contain;
 }
 
-.operationInfoContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
 .operationInfo {
-  font-size: 12px;
+  font-size: 11px;
   color: #666;
   line-height: 1.4;
   z-index: 1;

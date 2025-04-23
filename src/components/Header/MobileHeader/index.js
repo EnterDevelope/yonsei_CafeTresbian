@@ -22,7 +22,7 @@ const MobileHeader = ({ onContactClick }) => {
         <div className={styles.headerContainer}>
           <div className={styles.logoArea}>
             <img
-              src="cafe_logo.png"
+              src={process.env.PUBLIC_URL + '/cafe_logo.png'}
               alt="Cafe Trebien Logo"
               className={styles.logoImg}
             />

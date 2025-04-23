@@ -17,7 +17,7 @@ const MobileServices = () => {
           맞춤형 디저트, 음료 제공 서비스
         </p>
         <img
-          src="catering.png"
+          src={process.env.PUBLIC_URL + '/catering.png'}
           alt="케이터링 서비스"
           className={styles.serviceImage}
         />
@@ -35,7 +35,7 @@ const MobileServices = () => {
           이동이 잦은 학생 및 교직원을 위한 간편 포장 서비스
         </p>
         <img
-          src="togo.png"
+          src={process.env.PUBLIC_URL + '/togo.png'}
           alt="To-go Bag 서비스"
           className={styles.serviceImage}
         />

@@ -19,7 +19,7 @@ const DesktopServices = () => {
         </p>
         <div className={styles.serviceCircle} />
         <img
-          src="catering.png"
+          src={process.env.PUBLIC_URL + '/catering.png'}
           alt="케이터링 서비스"
           className={styles.serviceImage}
         />
@@ -38,7 +38,7 @@ const DesktopServices = () => {
         </p>
         <div className={styles.serviceCircleTogo} />
         <img
-          src="togo.png"
+          src={process.env.PUBLIC_URL + '/togo.png'}
           alt="To-go Bag 서비스"
           className={styles.serviceImage}
         />

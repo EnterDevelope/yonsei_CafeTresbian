@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './styles.module.css';
 
 const MobileMenu = () => {
   const [activeTab, setActiveTab] = useState('Coffee');
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const menuData = {
     Coffee: [
@@ -36,6 +37,16 @@ const MobileMenu = () => {
     ]
   };
 
+  const handleTabClick = (tabName) => {
+    if (activeTab === tabName || isAnimating) return;
+
+    setIsAnimating(true);
+    setTimeout(() => {
+      setActiveTab(tabName);
+      setIsAnimating(false);
+    }, 300);
+  };
+
   return (
     <section className={styles.menuSection}>
       <h2 className={styles.menuTitle}>카페 트레비앙 메뉴</h2>
@@ -45,14 +56,18 @@ const MobileMenu = () => {
           <button
             key={tabName}
             className={`${styles.menuTab} ${activeTab === tabName ? styles.active : ''}`}
-            onClick={() => setActiveTab(tabName)}
+            onClick={() => handleTabClick(tabName)}
+            disabled={isAnimating}
           >
             {tabName}
           </button>
         ))}
       </div>
 
-      <div className={styles.menuList}>
+      <div 
+        key={activeTab}
+        className={`${styles.menuList} ${isAnimating ? styles.fadeOut : styles.fadeIn}`}
+      >
         {menuData[activeTab].map((item, index) => (
           <div key={index} className={styles.menuItem}>
             <div className={styles.menuItemHeader}>
