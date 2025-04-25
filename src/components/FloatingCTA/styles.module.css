@@ -1,0 +1,33 @@
+.floatingContainer {
+  position: fixed;
+  bottom: 20px; /* 하단 여백 */
+  left: 50%;
+  transform: translateX(-50%); /* 가로 중앙 정렬 */
+  z-index: 1000; /* 다른 요소 위에 표시 */
+  width: 90%; /* 너비 */
+  max-width: 350px; /* 최대 너비 */
+}
+
+.ctaButton {
+  width: 100%;
+  padding: 14px 20px;
+  background-color: #003087; /* 주요 CTA 색상 (파랑) */
+  color: white;
+  border: none;
+  border-radius: 25px; /* 둥근 모서리 */
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.ctaButton:hover {
+  background-color: #002060; /* 호버 시 약간 어둡게 */
+  transform: translateY(-2px);
+}
+
+.ctaButton:focus-visible {
+  outline: 2px solid #4dabf7;
+  outline-offset: 2px;
+} 

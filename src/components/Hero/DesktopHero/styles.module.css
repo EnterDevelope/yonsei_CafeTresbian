@@ -1,105 +1,179 @@
 .heroSection {
-  position: relative;
-  width: 100%;
-  background-color: #fff;
-  margin-top: 80px;
+  padding: var(--spacing-xl) 0;
+  background-color: var(--color-background);
   overflow: hidden;
 }
 
 .heroContainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 0 var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xl);
 }
 
 .textArea {
-  flex: 0 0 50%;
+  flex: 1;
+  max-width: 580px;
+  z-index: 1;
 }
 
 .heroTitle {
-  font-size: 44px;
-  font-weight: 700;
-  line-height: 1.2;
-  margin: 0 0 1rem;
-  color: #222;
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--spacing-md);
+}
+
+.heroTitle br {
+  display: block; /* 모바일에서는 inline이 될 수 있으므로 명시 */
 }
 
 .heroDesc {
-  font-size: 15px;
-  line-height: 1.6;
-  color: #444;
-  margin: 0 0 1.5rem;
+  font-size: var(--font-size-body1);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-normal);
+  margin-bottom: var(--spacing-lg);
 }
 
-.contactButton {
-  background-color: #003087;
-  color: #fff;
-  border: none;
-  padding: 0.75rem 1.25rem;
-  border-radius: 8px;
-  box-shadow: 0px 3px 10px rgba(0, 75, 212, 0.5);
-  font-size: 14px;
-  font-weight: 700;
+.ctaButtonContainer {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.ctaButton {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-body2);
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all var(--transition-normal);
+  border: none;
+  text-align: center;
+  white-space: nowrap;
 }
 
-.contactButton:hover {
-  background-color: #002060;
+.cateringButton {
+  background: var(--color-primary);
+  color: var(--color-background);
+  box-shadow: var(--shadow-sm);
+}
+
+.cateringButton:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.cateringButton:focus-visible {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 2px;
+}
+
+.togoButton {
+  background-color: var(--color-background);
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.togoButton:hover {
+  background-color: var(--color-primary-light);
+  border-color: var(--color-primary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.togoButton:focus-visible {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 2px;
 }
 
 .imageArea {
+  flex: 1;
   position: relative;
-  flex: 0 0 50%;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  min-width: 400px; /* 이미지 영역 최소 너비 확보 */
 }
 
 .blobImg {
   position: absolute;
-  top: -90px;
-  right: -280px;
-  width: 460px;
+  width: 120%;
+  max-width: 600px;
   height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 0;
-  object-fit: cover;
+  opacity: 0.35;
+  filter: blur(5px);
+  color: var(--color-primary);
 }
 
 .cafeImage {
   position: relative;
-  z-index: 2;
-  width: 450px;
-  height: auto;
-  border-radius: 12px;
-  object-fit: cover;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.heroBottom {
-  width: 90%;
-  max-width: 1200px;
-  margin: 2rem auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  text-align: center;
-  padding: 20px 0;
-}
-
-.coopLogo {
-  width: 120px;
-  height: auto;
-  object-fit: contain;
-}
-
-.operationInfo {
-  font-size: 14px;
-  color: #666;
-  line-height: 1.4;
   z-index: 1;
-} 
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  object-fit: cover;
+  aspect-ratio: 4 / 3; /* 이미지 비율 고정 */
+}
+
+/* Tablet and smaller devices */
+@media (max-width: 992px) {
+  .heroContainer {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-lg);
+  }
+
+  .textArea {
+    max-width: 100%;
+  }
+
+  .ctaButtonContainer {
+    justify-content: center;
+  }
+
+  .imageArea {
+    min-width: unset;
+    width: 100%;
+    max-width: 500px; /* 모바일에서 이미지 최대 크기 제한 */
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 576px) {
+  .heroTitle {
+    font-size: calc(var(--font-size-h1) * 0.85); /* 모바일에서 약간 작게 */
+  }
+
+  .heroDesc {
+    font-size: var(--font-size-body2);
+  }
+
+  .ctaButtonContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  .ctaButton {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* heroBottom 관련 스타일 제거 또는 주석 처리 */
+/* 
+.heroBottom { ... }
+.coopLogo { ... }
+.operationInfo { ... } 
+*/ 

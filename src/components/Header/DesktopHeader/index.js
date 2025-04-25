@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
 
 const DesktopHeader = ({ onContactClick }) => {
@@ -15,35 +16,30 @@ const DesktopHeader = ({ onContactClick }) => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.headerContainer}>
-        <div className={styles.logoArea}>
+      <div className={styles.container}>
+        <Link to="/" className={styles.logo}>
           <img
-            src={process.env.PUBLIC_URL + '/cafe_logo.png'}
-            alt="Cafe Trebien Logo"
-            className={styles.logoImg}
+            src={`${process.env.PUBLIC_URL}/cafe_logo.png`}
+            alt="트레비앙 로고"
+            className={styles.logoImage}
           />
-        </div>
+        </Link>
 
         <nav className={styles.nav}>
-          <ul className={styles.navList}>
-            <li onClick={() => scrollToSection('top')}>홈</li>
-            <li onClick={() => scrollToSection('services')}>서비스 안내</li>
-            <li onClick={() => scrollToSection('menu')}>메뉴 안내</li>
-          </ul>
+          <Link to="/menu" className={styles.navLink}>
+            메뉴
+          </Link>
+          <Link to="/services" className={styles.navLink}>
+            서비스
+          </Link>
+          <Link to="/about" className={styles.navLink}>
+            소개
+          </Link>
         </nav>
 
-        <div className={styles.actionBtns}>
-          <button
-            type="button"
-            className={styles.contactBtn}
-            onClick={onContactClick}
-          >
-            Contact us
-          </button>
-          <button type="button" className={styles.loginBtn}>
-            Log in
-          </button>
-        </div>
+        <button className={styles.contactButton} onClick={onContactClick}>
+          문의하기
+        </button>
       </div>
     </header>
   );

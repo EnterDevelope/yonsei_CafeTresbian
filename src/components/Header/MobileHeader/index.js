@@ -55,14 +55,7 @@ const MobileHeader = ({ onContactClick }) => {
                   setIsMenuOpen(false);
                 }}
               >
-                Contact us
-              </button>
-              <button
-                type="button"
-                className={styles.loginBtn}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Log in
+                문의하기
               </button>
             </div>
           </nav>

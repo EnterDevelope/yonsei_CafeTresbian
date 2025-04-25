@@ -1,81 +1,223 @@
-.serviceSection {
-  width: 90%;
-  max-width: 1300px;
-  margin: 70px auto;
-  border-radius: 60px;
-  position: relative;
-  padding: 70px;
-  text-align: left;
+.servicesContainer {
+  padding: var(--spacing-xl) var(--spacing-md);
+  background-color: var(--color-background-secondary);
 }
 
-/* 케이터링 */
-.cateringSection {
-  background-color: #edfafe;
+.sectionTitleContainer {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
 }
 
-.serviceLabel {
-  display: block;
-  color: #49ccf9;
-  font-size: 12px;
-  font-family: Helvetica, sans-serif;
-  font-weight: 700;
+.sectionLabel {
+  display: inline-block;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--spacing-sm);
   text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 20px;
+}
+
+.sectionTitle {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.sectionDesc {
+  font-size: var(--font-size-body1);
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.serviceCardsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.serviceCard {
+  display: flex;
+  background-color: var(--color-background);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: box-shadow var(--transition-normal);
+}
+
+.serviceCard:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Catering Card Specific Alignment */
+.cateringCard .serviceContent {
+  order: 1;
+}
+.cateringCard .serviceImageContainer {
+  order: 2;
+}
+
+/* To-go Card Specific Alignment */
+.togoCard .serviceContent {
+  order: 2;
+}
+.togoCard .serviceImageContainer {
+  order: 1;
+}
+
+.serviceContent {
+  flex: 1;
+  padding: var(--spacing-lg) var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .serviceTitle {
-  font-size: 40px;
-  font-family: Inter, sans-serif;
-  font-weight: 800;
-  line-height: 68px;
-  color: #333333;
-  margin: 10px 0;
-  max-width: 400px;
-  word-wrap: break-word;
-}
-
-.serviceDivider {
-  width: 100px;
-  height: 5px;
-  border-radius: 5px;
-  background-color: #49ccf9;
-  margin: 20px 0;
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
 }
 
 .serviceDesc {
-  font-size: 14px;
-  line-height: 25px;
-  color: #292d34;
-  max-width: 400px;
+  font-size: var(--font-size-body2);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-normal);
+  margin-bottom: var(--spacing-lg);
+  flex-grow: 1; /* Ensures button stays at bottom */
 }
 
-.serviceImage {
-  position: absolute;
-  top: 35px;
-  right: 65px;
-  width: 500px;
-  max-height: 300px;
-  border-radius: 20px;
+.ctaButton {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-body2);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  border: none;
+  text-align: center;
+  white-space: nowrap;
+  align-self: flex-start; /* Align button to the start of the flex container */
+}
+
+.ctaButtonPrimary {
+  background: var(--color-primary);
+  color: var(--color-background);
+}
+
+.ctaButtonPrimary:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+.ctaButtonSecondary {
+  background-color: var(--color-background);
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+}
+
+.ctaButtonSecondary:hover {
+  background-color: var(--color-primary-light);
+  border-color: var(--color-primary-light);
+  transform: translateY(-2px);
+}
+
+.serviceImageContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-background-secondary);
+  min-height: 300px; /* 이미지 최소 높이 */
+}
+
+.serviceMainImage {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
-/* To-go Bag */
-.togoSection {
-  background-color: #e9ffe9;
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .serviceCard {
+    flex-direction: column;
+  }
+
+  /* Reset order for stacked layout */
+  .cateringCard .serviceContent,
+  .cateringCard .serviceImageContainer,
+  .togoCard .serviceContent,
+  .togoCard .serviceImageContainer {
+    order: initial;
+  }
+
+  .serviceContent {
+    padding: var(--spacing-lg);
+    align-items: center; /* Center content on smaller screens */
+    text-align: center;
+  }
+
+  .ctaButton {
+    align-self: center;
+  }
+
+  .serviceImageContainer {
+     min-height: 250px;
+  }
 }
 
-.serviceLabelTogo {
-  display: block;
-  color: #6edb81;
+@media (max-width: 576px) {
+  .sectionTitle {
+    font-size: calc(var(--font-size-h2) * 0.9);
+  }
+  .sectionDesc {
+    font-size: var(--font-size-body2);
+  }
+   .serviceTitle {
+    font-size: calc(var(--font-size-h3) * 0.9);
+  }
+}
+
+/* 서비스 레이블 스타일 (이전 단계에서 수정됨) */
+.serviceLabel, .serviceLabelTogo { /* 공통 스타일 */
+  display: inline-block; /* 배경색 적용 위해 */
   font-size: 12px;
-  font-family: Helvetica, sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 20px;
+  font-weight: 700; /* 굵게 */
+  padding: 4px 10px; /* 패딩 추가 */
+  margin-bottom: 0.8rem;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.serviceLabel { /* 케이터링 레이블 */
+  color: #003087; /* 브랜드 파랑 */
+  background-color: #e6f0ff; /* 연한 파랑 배경 */
+}
+
+.serviceLabelTogo { /* To-go 레이블 (다른 색상으로 구분) */
+  color: #009e27; /* Brighter green text */
+  background-color: #e7feee; /* Light green background */
+}
+
+.serviceDivider {
+  width: 50px;
+  height: 3px;
+  background-color: #003087;
+  margin-bottom: 1rem;
 }
 
 .togoDivider {
-  background-color: #6edb81;
-} 
+  background-color: #28a745; /* Brighter green divider */
+}
+
+/* 기존 serviceSection 관련 스타일은 제거 또는 수정 */
+/* .serviceSection { ... } */
+/* .serviceCircle { ... } */
+/* .serviceImage { ... } */ 

@@ -1,75 +1,270 @@
+/* Base Service Section Styles */
 .serviceSection {
-  width: 90%;
-  margin: 30px auto;
-  border-radius: 30px;
-  padding: 30px 20px;
-  text-align: left;
+  padding: 40px 20px;
+  text-align: center;
 }
 
-/* 케이터링 */
-.cateringSection {
-  background-color: #edfafe;
+/* Services Container */
+.servicesContainer {
+  padding: 40px 20px;
+}
+
+/* Service Card Styles */
+.serviceCard {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  display: flex; /* Flexbox for vertical alignment */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+}
+
+.cateringCard {
+  /* Specific styles for catering card if needed */
+}
+
+.togoCard {
+  /* Specific styles for to-go card if needed */
+}
+
+/* Shared Label Styles */
+.serviceLabel,
+.serviceLabelTogo {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 12px;
 }
 
 .serviceLabel {
-  display: block;
-  color: #49ccf9;
-  font-size: 12px;
-  font-family: Helvetica, sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 15px;
-}
-
-.serviceTitle {
-  font-size: 24px;
-  font-family: Inter, sans-serif;
-  font-weight: 800;
-  line-height: 1.4;
-  color: #333333;
-  margin: 10px 0;
-  word-wrap: break-word;
-}
-
-.serviceDivider {
-  width: 60px;
-  height: 3px;
-  border-radius: 3px;
-  background-color: #49ccf9;
-  margin: 15px 0;
-}
-
-.serviceDesc {
-  font-size: 14px;
-  line-height: 1.5;
-  color: #292d34;
-  margin-bottom: 20px;
-}
-
-.serviceImage {
-  width: 100%;
-  height: 200px;
-  border-radius: 15px;
-  object-fit: cover;
-}
-
-/* To-go Bag */
-.togoSection {
-  background-color: #e9ffe9;
+  background-color: #e8f0fe; /* Light blue background for catering */
+  color: #1967d2; /* Dark blue text */
 }
 
 .serviceLabelTogo {
-  display: block;
-  color: #6edb81;
-  font-size: 12px;
-  font-family: Helvetica, sans-serif;
+  background-color: #f0fff4; /* Light green background */
+  color: #28a745; /* Brighter green text */
+}
+
+/* Service Title */
+.serviceTitle {
+  font-size: 20px;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 15px;
+  color: #202124; /* Dark gray text */
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+/* Service Divider */
+.serviceDivider {
+  width: 40px;
+  height: 3px;
+  background-color: #1967d2; /* Blue divider for catering */
+  margin: 12px auto 20px auto; /* Auto margins for centering */
+  border: none;
 }
 
 .togoDivider {
-  background-color: #6edb81;
+  background-color: #28a745; /* Brighter green divider */
+}
+
+/* Service Main Image */
+.serviceMainImage {
+  width: 100%;
+  max-width: 280px; /* Limit image width */
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  object-fit: cover;
+}
+
+/* Service Description */
+.serviceDesc {
+  font-size: 14px;
+  color: #5f6368; /* Medium gray text */
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* CTA Button Styles */
+.ctaButtonPrimary,
+.ctaButtonSecondary {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: none;
+  width: 100%; /* Full width buttons */
+  max-width: 250px; /* Max width for larger mobiles */
+}
+
+.ctaButtonPrimary {
+  background-color: #1967d2; /* Blue */
+  color: white;
+}
+
+.ctaButtonPrimary:hover {
+  background-color: #185abc; /* Darker blue */
+  transform: translateY(-2px);
+}
+
+.ctaButtonPrimary:focus-visible {
+  outline: 2px solid #4dabf7;
+  outline-offset: 2px;
+}
+
+.ctaButtonSecondary {
+  background-color: white;
+  color: #28a745; /* Brighter green text */
+  border: 1px solid #dadce0; /* Light gray border */
+}
+
+.ctaButtonSecondary:hover {
+  background-color: #f8f9fa; /* Very light gray */
+  transform: translateY(-2px);
+}
+
+.ctaButtonSecondary:focus-visible {
+  outline: 2px solid #28a745; /* To-go는 녹색 */
+  outline-offset: 2px;
+}
+
+/* Remove old section-specific styles if they exist */
+.cateringSection,
+.togoSection {
+  /* Remove or comment out old styles */
+  /* padding: 0; */
+  /* text-align: left; */
+}
+
+.serviceImage {
+  /* Remove or comment out old image styles */
+  /* width: 100%; */
+  /* max-width: 300px; */
+  /* height: auto; */
+  /* display: block; */
+  /* margin: 20px auto; */
+  /* border-radius: 8px; */
+}
+
+/* Remove old serviceLabel styles if they were different */
+/* .serviceLabel { ... } */
+/* .serviceLabelTogo { ... } */
+
+.servicesSection {
+  padding: var(--spacing-xl) var(--spacing-md); /* 상하 여백 늘림 */
+  background-color: var(--color-background-secondary);
+  text-align: center;
+}
+
+.sectionTitleContainer {
+  margin-bottom: var(--spacing-lg);
+}
+
+.sectionLabel {
+  display: inline-block;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+}
+
+.sectionTitle {
+  font-size: calc(var(--font-size-h2) * 0.9);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.sectionDesc {
+  font-size: var(--font-size-body2);
+  color: var(--color-text-secondary);
+  max-width: 480px;
+  margin: 0 auto var(--spacing-lg) auto;
+}
+
+.serviceCardsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl); /* 카드 간격 늘림 */
+}
+
+.serviceCard {
+  background-color: var(--color-background);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  padding: var(--spacing-lg);
+}
+
+.serviceImageContainer {
+  margin-bottom: var(--spacing-md);
+}
+
+.serviceMainImage {
+  width: 100%;
+  height: auto;
+  max-height: 240px; /* 모바일 이미지 최대 높이 증가 */
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+.serviceTitle {
+  font-size: calc(var(--font-size-h3) * 0.95);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.serviceDesc {
+  font-size: var(--font-size-body2);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-normal);
+  margin-bottom: var(--spacing-md);
+}
+
+.ctaButton {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-body2);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  border: none;
+  text-align: center;
+  white-space: nowrap;
+  width: 100%;
+  max-width: 300px; /* 버튼 최대 너비 약간 줄임 */
+  margin-top: var(--spacing-sm);
+}
+
+.ctaButtonPrimary {
+  background: var(--color-primary);
+  color: var(--color-background);
+}
+
+.ctaButtonPrimary:hover {
+  background: var(--color-primary-dark);
+}
+
+.ctaButtonSecondary {
+  background-color: var(--color-background);
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+}
+
+.ctaButtonSecondary:hover {
+  background-color: var(--color-primary-light);
+  border-color: var(--color-primary-light);
 } 

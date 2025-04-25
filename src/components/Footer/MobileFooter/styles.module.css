@@ -17,6 +17,7 @@
 .logo {
   height: 30px;
   width: auto;
+  margin-bottom: 0.5rem;
 }
 
 .copyright {
@@ -25,8 +26,9 @@
 }
 
 .infoSection {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   line-height: 1.5;
+  color: #777;
 }
 
 .infoSection p {
@@ -55,4 +57,18 @@
   font-size: 0.9rem;
   margin: 0.3rem 0;
   color: #555;
+}
+
+/* 생협 운영 문구 스타일 */
+.coopText {
+  font-size: 0.8rem;
+  color: #888;
+  margin: 0;
+}
+
+/* 운영 정보 스타일 */
+.operationInfo {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.8rem;
 } 

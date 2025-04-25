@@ -79,8 +79,12 @@
 }
 
 .menuButton.active .menuIcon::after {
-  transform: rotate(-45deg);
-  bottom: 0;
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.menuButton:focus-visible {
+  outline: 2px solid #555;
+  outline-offset: 2px;
 }
 
 .overlay {
@@ -134,6 +138,16 @@
   cursor: pointer;
 }
 
+.navList li:hover {
+  color: #003087;
+}
+
+.navList li:focus-visible {
+  outline: 2px solid #1967d2;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 .actionBtns {
   display: flex;
   flex-direction: column;
@@ -156,14 +170,19 @@
   border: none;
 }
 
+.contactBtn:hover {
+  background-color: #002060;
+}
+
+.contactBtn:focus-visible {
+  outline: 2px solid #4dabf7;
+  outline-offset: 2px;
+}
+
 .loginBtn {
   background-color: #fff;
   color: #003087;
   border: 1px solid #003087;
-}
-
-.contactBtn:hover {
-  background-color: #002060;
 }
 
 .loginBtn:hover {
