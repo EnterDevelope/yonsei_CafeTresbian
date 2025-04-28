@@ -44,7 +44,7 @@ const MobileServices = ({ onContactClick }) => {
         </div>
 
         {/* To-go Bag 서비스 카드 */}
-        <div className={styles.serviceCard}>
+        <div className={styles.serviceCard} id="togo-service-card">
           <div className={styles.serviceImageContainer}>
             <img
               src={`${process.env.PUBLIC_URL}/togo.png`}
@@ -69,4 +69,4 @@ const MobileServices = ({ onContactClick }) => {
   );
 };
 
-export default MobileServices; 
+export default MobileServices;

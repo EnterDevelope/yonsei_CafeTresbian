@@ -53,7 +53,7 @@ const MobileHero = ({ onContactClick }) => {
             </button>
             <button 
               className={`${styles.ctaButton} ${styles.togoButton}`} 
-              onClick={() => scrollToSection('services')}
+              onClick={() => scrollToSection('togo-service-card')}
             >
               To-go 서비스 안내
             </button>
@@ -64,4 +64,4 @@ const MobileHero = ({ onContactClick }) => {
   );
 };
 
-export default MobileHero; 
+export default MobileHero;

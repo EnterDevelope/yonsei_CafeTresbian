@@ -145,7 +145,7 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 992px) {
+@media (max-width: 768px) {
   .serviceCard {
     flex-direction: column;
   }
@@ -220,4 +220,4 @@
 /* 기존 serviceSection 관련 스타일은 제거 또는 수정 */
 /* .serviceSection { ... } */
 /* .serviceCircle { ... } */
-/* .serviceImage { ... } */ 
+/* .serviceImage { ... } */
