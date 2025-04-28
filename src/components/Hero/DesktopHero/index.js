@@ -28,9 +28,15 @@ const DesktopHero = ({ onContactClick }) => {
               케이터링 문의하기
             </button>
             <button className={`${styles.ctaButton} ${styles.togoButton}`} onClick={() => {
-              const servicesSection = document.getElementById('services');
-              if (servicesSection) {
-                servicesSection.scrollIntoView({ behavior: 'smooth' });
+              const togoCard = document.getElementById('togo-service-card');
+              if (togoCard) {
+                togoCard.scrollIntoView({ behavior: 'smooth' });
+              } else {
+                // fallback: 기존 서비스 섹션으로 이동
+                const servicesSection = document.getElementById('services');
+                if (servicesSection) {
+                  servicesSection.scrollIntoView({ behavior: 'smooth' });
+                }
               }
             }}>
               To-go 서비스 안내
@@ -65,4 +71,4 @@ const DesktopHero = ({ onContactClick }) => {
   );
 };
 
-export default DesktopHero; 
+export default DesktopHero;

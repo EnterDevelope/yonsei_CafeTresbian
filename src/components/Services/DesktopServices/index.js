@@ -48,7 +48,7 @@ const DesktopServices = ({ onContactClick }) => {
         </div>
 
         {/* To-go Bag 서비스 카드 */}
-        <div className={`${styles.serviceCard} ${styles.togoCard}`}> 
+        <div className={`${styles.serviceCard} ${styles.togoCard}`} id="togo-service-card"> 
           <div className={styles.serviceContent}>
             <h3 className={styles.serviceTitle}>
               To-go Bag 서비스
@@ -77,4 +77,4 @@ const DesktopServices = ({ onContactClick }) => {
   );
 };
 
-export default DesktopServices; 
+export default DesktopServices;

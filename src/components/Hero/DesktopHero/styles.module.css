@@ -127,7 +127,7 @@
 }
 
 /* Tablet and smaller devices */
-@media (max-width: 992px) {
+@media (max-width: 768px) {
   .heroContainer {
     flex-direction: column;
     text-align: center;
@@ -146,6 +146,13 @@
     min-width: unset;
     width: 100%;
     max-width: 500px; /* 모바일에서 이미지 최대 크기 제한 */
+  }
+}
+
+/* 769px 이상 1005px 미만에서 heroTitle 폰트 크기 축소 */
+@media (min-width: 769px) and (max-width: 1004px) {
+  .heroTitle {
+    font-size: calc(var(--font-size-h1) * 0.82);
   }
 }
 
@@ -176,4 +183,4 @@
 .heroBottom { ... }
 .coopLogo { ... }
 .operationInfo { ... } 
-*/ 
+*/
