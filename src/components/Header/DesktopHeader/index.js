@@ -38,7 +38,7 @@ const DesktopHeader = ({ onContactClick }) => {
         </nav>
 
         <button className={styles.contactButton} onClick={onContactClick}>
-          문의하기
+          카페 문의하기
         </button>
       </div>
     </header>

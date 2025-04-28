@@ -6,6 +6,8 @@ import Services from './components/Services';
 import Menu from './components/Menu';
 // import Contact from './components/Contact'; // Contact import 주석 처리
 import Footer from './components/Footer';
+import CafeContactModal from './components/CafeContactModal';
+import CateringEstimateModal from './components/CateringEstimateModal';
 import Modal from './components/Modal';
 import './App.css';
 // import useResponsive from './shared/hooks/useResponsive'; // 기존 default import 주석 처리
@@ -24,11 +26,23 @@ function HomePage({ onContactClick }) {
 }
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCafeContactModalOpen, setIsCafeContactModalOpen] = useState(false);
+  const [isCateringEstimateModalOpen, setIsCateringEstimateModalOpen] = useState(false);
   const { isMobile } = useResponsive();
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  // 각각의 모달 오픈 핸들러
+  const openCafeContactModal = () => {
+    setIsCafeContactModalOpen(true);
+    setIsCateringEstimateModalOpen(false);
+  };
+  const openCateringEstimateModal = () => {
+    setIsCafeContactModalOpen(false);
+    setIsCateringEstimateModalOpen(true);
+  };
+  const closeModals = () => {
+    setIsCafeContactModalOpen(false);
+    setIsCateringEstimateModalOpen(false);
+  };
 
   console.log('App rendering, isMobile:', isMobile); // 디버깅용 로그
 
@@ -39,12 +53,12 @@ function App() {
   return (
     <BrowserRouter basename="/yonsei_CafeTresbian">
       <div className="App">
-        <Header onContactClick={openModal} />
+        <Header onContactClick={openCafeContactModal} />
         <main className="main-content">
           <Routes>
             <Route
               path="/"
-              element={<HomePage onContactClick={openModal} />}
+              element={<HomePage onContactClick={openCateringEstimateModal} />}
             />
             <Route
               path="/menu"
@@ -58,7 +72,7 @@ function App() {
               path="/services"
               element={
                 <div className="page-container">
-                  <Services onContactClick={openModal} />
+                  <Services onContactClick={openCateringEstimateModal} />
                 </div>
               }
             />
@@ -74,8 +88,9 @@ function App() {
           </Routes>
         </main>
         <Footer />
-        <Modal isOpen={isModalOpen} onClose={closeModal} />
-        {isMobile && <FloatingCTA onContactClick={openModal} />}
+        <CafeContactModal isOpen={isCafeContactModalOpen} onClose={closeModals} />
+        <CateringEstimateModal isOpen={isCateringEstimateModalOpen} onClose={closeModals} />
+        {isMobile && <FloatingCTA onContactClick={openCafeContactModal} />}
       </div>
     </BrowserRouter>
   );

@@ -33,7 +33,7 @@ const MobileServices = ({ onContactClick }) => {
           </div>
           <h3 className={styles.serviceTitle}>케이터링 서비스</h3>
           <p className={styles.serviceDesc}>
-            동아리 모임, 학과 세미나 등 다양한 행사에 맞춰 최적의 메뉴를 구성해 드립니다. 신선한 재료로 만든 맛있는 디저트와 음료로 행사의 품격을 높여보세요.
+          동아리 모임, 학과 세미나, 스터디 그룹 등 다양한 행사의 규모와 성격에 맞춘 케이터링을 신청해보세요. 신선한 재료로 만든 맛있는 디저트와 음료로 <br /> 행사의 퀄리티를 높여드립니다.
           </p>
           <button 
             className={`${styles.ctaButton} ${styles.ctaButtonPrimary}`} 
@@ -53,9 +53,9 @@ const MobileServices = ({ onContactClick }) => {
               loading="lazy"
             />
           </div>
-          <h3 className={styles.serviceTitle}>To-go Bag 서비스</h3>
+          <h3 className={styles.serviceTitle}>To-go Bag 서비스 <br /> (매장에 직접 문의)</h3>
           <p className={styles.serviceDesc}>
-            바쁜 학생과 교직원을 위해 준비했습니다. 미리 주문하고 원하는 시간에 간편하게 픽업하세요. 든든하고 맛있는 메뉴를 가방에 쏙!
+            바쁜 학생과 교직원을 위해 준비했습니다. 든든하고 맛있는 메뉴를 포장해서 간편하게 쏙!
           </p>
           <button 
             className={`${styles.ctaButton} ${styles.ctaButtonSecondary}`} 
