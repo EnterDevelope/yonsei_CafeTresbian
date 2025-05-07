@@ -6,8 +6,8 @@ import Services from './components/Services';
 import Menu from './components/Menu';
 // import Contact from './components/Contact'; // Contact import 주석 처리
 import Footer from './components/Footer';
-import CafeContactModal from './components/CafeContactModal';
-import CateringEstimateModal from './components/CateringEstimateModal';
+import CafeContactModal from './components/modal/CafeContactModal';
+import CateringEstimateModal from './components/modal/CateringEstimateModal';
 import Modal from './components/Modal';
 import './App.css';
 // import useResponsive from './shared/hooks/useResponsive'; // 기존 default import 주석 처리

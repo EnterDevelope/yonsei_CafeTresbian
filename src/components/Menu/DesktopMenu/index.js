@@ -75,13 +75,31 @@ const DesktopMenu = () => {
         {Object.keys(menuData).map((tabName) => (
           <button
             key={tabName}
-            className={`${styles.menuTab} ${activeTab === tabName ? styles.menuTabActive : ''}`}
+            className={`
+              ${styles.menuTab} 
+              ${activeTab === tabName ? styles.menuTabActive : ''}
+              group
+              cursor-pointer
+              transition-all duration-200
+              relative
+              focus:outline-none
+              focus-visible:ring-2 focus-visible:ring-blue-400
+              hover:scale-105 hover:shadow-md
+              hover:text-blue-700
+              hover:bg-blue-50
+              after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-0 after:w-0 after:h-0.5 after:bg-blue-500 after:rounded-full after:transition-all after:duration-200
+              hover:after:w-4/5 hover:after:h-0.5
+            `}
             onClick={() => handleTabClick(tabName)}
             aria-selected={activeTab === tabName}
             role="tab"
+            tabIndex={0}
+            aria-label={`${tabName} 메뉴 카테고리`}
+            onKeyDown={e => {
+              if (e.key === 'Enter' || e.key === ' ') handleTabClick(tabName);
+            }}
           >
             {tabName}
-            {activeTab === tabName && <div className={styles.tabUnderline} />}
           </button>
         ))}
       </div>

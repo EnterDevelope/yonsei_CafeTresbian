@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import TogobagModal from '../modal/TogobagModal';
 
 // scrollToSection 함수 정의 추가 (주석 해제)
 const scrollToSection = (id) => {
@@ -9,6 +10,7 @@ const scrollToSection = (id) => {
 };
 
 const DesktopServices = ({ onContactClick }) => {
+  const [isTogobagOpen, setIsTogobagOpen] = useState(false);
   console.log('DesktopServices rendering'); // 디버깅용 로그
 
   return (
@@ -50,9 +52,9 @@ const DesktopServices = ({ onContactClick }) => {
             <p className="text-base text-[var(--color-text-secondary)] mb-6">바쁜 학생과 교직원을 위해 준비했습니다. 간편하게 픽업해가 실 수 있도록 포장해드립니다.</p>
             <button 
               className="py-2.5 px-7 rounded-full text-base font-semibold cursor-pointer transition-colors duration-150 outline-none border-none bg-purple-500 text-white shadow hover:bg-purple-800"
-              onClick={() => scrollToSection('menu')}
+              onClick={() => setIsTogobagOpen(true)}
             >
-              To-go 메뉴 보기
+              매장 운영 정보
             </button>
           </div>
           <div className="flex-1 flex items-center justify-center">
@@ -65,6 +67,7 @@ const DesktopServices = ({ onContactClick }) => {
           </div>
         </div>
       </div>
+      <TogobagModal isOpen={isTogobagOpen} onClose={() => setIsTogobagOpen(false)} />
     </section>
   );
 };
