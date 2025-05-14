@@ -5,7 +5,7 @@ import { MODAL_CONTAINER_CLASS } from './modalClassNames';
 const CateringEstimateModal = ({ isOpen, onClose }) => {
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = '/assets/files/0.케이터링 주문서.xlsx';
+    link.href = '/files/0.케이터링 주문서.xlsx';
     link.download = '0.케이터링 주문서.xlsx';
     document.body.appendChild(link);
     link.click();
