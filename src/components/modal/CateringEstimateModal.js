@@ -5,7 +5,7 @@ import { MODAL_CONTAINER_CLASS } from './modalClassNames';
 const CateringEstimateModal = ({ isOpen, onClose }) => {
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = '/files/catering_order.xlsx';
+    link.href = 'files/catering_order.xlsx';
     link.download = 'catering_order.xlsx';
     document.body.appendChild(link);
     link.click();
