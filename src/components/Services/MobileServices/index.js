@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TogobagModal from '../modal/TogobagModal';
+import TogobagModal from '../../modal/TogobagModal';
 
 // scrollToSection 함수 정의 추가 (주석 해제)
 const scrollToSection = (id) => {
@@ -56,7 +56,7 @@ const MobileServices = ({ onContactClick }) => {
           <h3 className="text-lg font-bold text-gray-900 mb-2 leading-snug">To-go Bag 서비스 <br /> (매장에 직접 문의)</h3>
           <p className="text-base text-[var(--color-text-secondary)] mb-5">바쁜 학생과 교직원을 위해 준비했습니다. 든든하고 맛있는 메뉴를 포장해서 간편하게 쏙!</p>
           <button
-            className="py-2 px-6 rounded-full text-base font-semibold cursor-pointer transition-colors duration-150 outline-none border-none bg-purple-500 text-white shadow hover:bg-purple-800"
+            className="py-2 px-6 rounded-full text-base font-semibold cursor-pointer transition-colors duration-150 outline-none border-none bg-sky-500 text-white shadow hover:bg-sky-600"
             onClick={() => setIsTogobagOpen(true)}
           >
             매장 운영 정보

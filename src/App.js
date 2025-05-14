@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
-import Menu from './components/Menu';
+// import Menu from './components/Menu';
+import MenuOverlay from './components/modal/MenuOverlay';
 // import Contact from './components/Contact'; // Contact import 주석 처리
 import Footer from './components/Footer';
 import CafeContactModal from './components/modal/CafeContactModal';
@@ -20,12 +21,13 @@ function HomePage({ onContactClick }) {
     <>
       <Hero onContactClick={onContactClick} />
       <Services onContactClick={onContactClick} />
-      <Menu />
+      {/* 메뉴 섹션 제거됨. 메뉴는 오버레이로만 노출 */}
     </>
   );
 }
 
 function App() {
+  const [isMenuOverlayOpen, setIsMenuOverlayOpen] = useState(false);
   const [isCafeContactModalOpen, setIsCafeContactModalOpen] = useState(false);
   const [isCateringEstimateModalOpen, setIsCateringEstimateModalOpen] = useState(false);
   const { isMobile } = useResponsive();
@@ -53,7 +55,7 @@ function App() {
   return (
     <BrowserRouter basename="/yonsei_CafeTresbian">
       <div className="App">
-        <Header onContactClick={openCafeContactModal} />
+        <Header onContactClick={openCafeContactModal} onMenuClick={() => setIsMenuOverlayOpen(true)} />
         <main className="main-content">
           <Routes>
             <Route
@@ -64,7 +66,7 @@ function App() {
               path="/menu"
               element={
                 <div className="page-container">
-                  <Menu />
+
                 </div>
               }
             />
@@ -91,6 +93,9 @@ function App() {
         <CafeContactModal isOpen={isCafeContactModalOpen} onClose={closeModals} />
         <CateringEstimateModal isOpen={isCateringEstimateModalOpen} onClose={closeModals} />
         {isMobile && <FloatingCTA onContactClick={openCafeContactModal} />}
+        {isMenuOverlayOpen && (
+          <MenuOverlay isOpen={isMenuOverlayOpen} onClose={() => setIsMenuOverlayOpen(false)} />
+        )}
       </div>
     </BrowserRouter>
   );

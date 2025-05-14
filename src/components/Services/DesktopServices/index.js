@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TogobagModal from '../modal/TogobagModal';
+import TogobagModal from '../../modal/TogobagModal';
 
 // scrollToSection 함수 정의 추가 (주석 해제)
 const scrollToSection = (id) => {
@@ -46,12 +46,12 @@ const DesktopServices = ({ onContactClick }) => {
           </div>
         </div>
         {/* To-go Bag 서비스 카드 */}
-        <div className="flex bg-white rounded-2xl shadow-md p-8 gap-8 w-full max-w-[540px] min-h-[320px] items-center border-l-4 border-purple-500" id="togo-service-card">
+        <div className="flex bg-white rounded-2xl shadow-md p-8 gap-8 w-full max-w-[540px] min-h-[320px] items-center border-l-4 border-sky-500" id="togo-service-card">
           <div className="flex-1 flex flex-col justify-center">
             <h3 className="text-xl font-bold mb-2">To-go Bag 서비스 (매장에 직접 문의)</h3>
             <p className="text-base text-[var(--color-text-secondary)] mb-6">바쁜 학생과 교직원을 위해 준비했습니다. 간편하게 픽업해가 실 수 있도록 포장해드립니다.</p>
             <button 
-              className="py-2.5 px-7 rounded-full text-base font-semibold cursor-pointer transition-colors duration-150 outline-none border-none bg-purple-500 text-white shadow hover:bg-purple-800"
+              className="py-2.5 px-7 rounded-full text-base font-semibold cursor-pointer transition-colors duration-150 outline-none border-none bg-sky-500 text-white shadow hover:bg-sky-600"
               onClick={() => setIsTogobagOpen(true)}
             >
               매장 운영 정보

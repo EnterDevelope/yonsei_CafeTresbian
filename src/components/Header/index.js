@@ -3,13 +3,12 @@ import { useResponsive } from '../../shared/hooks/useResponsive';
 import MobileHeader from './MobileHeader';
 import DesktopHeader from './DesktopHeader';
 
-const Header = ({ onContactClick }) => {
+const Header = ({ onContactClick, onMenuClick }) => {
   const { isMobile } = useResponsive();
-  
   return isMobile ? (
-    <MobileHeader onContactClick={onContactClick} />
+    <MobileHeader onContactClick={onContactClick} onMenuClick={onMenuClick} />
   ) : (
-    <DesktopHeader onContactClick={onContactClick} />
+    <DesktopHeader onContactClick={onContactClick} onMenuClick={onMenuClick} />
   );
 };
 

@@ -91,26 +91,33 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1001;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(30, 40, 80, 0.32);
+  backdrop-filter: blur(16px);
+  z-index: 2000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
 }
 
-.mobileNav {
+.mobileNav, .drawer {
   position: fixed;
-  top: 60px;
+  top: 0;
   right: 0;
-  width: 80%;
-  max-width: 300px;
-  height: calc(100vh - 60px);
-  background-color: #fff;
-  z-index: 1002;
-  padding: 2rem;
+  width: 80vw;
+  max-width: 340px;
+  height: 100vh;
+  background: rgba(255,255,255,0.56);
+  box-shadow: 0 12px 40px 0 rgba(56,189,248,0.13), 0 1.5px 8px 0 rgba(30,64,175,0.06);
+  border-radius: 1.6rem 0 0 1.6rem;
+  padding: 2.3rem 2.1rem 2.1rem 1.2rem;
+  z-index: 2100;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  animation: slideIn 0.3s ease;
+  gap: 2.2rem;
+  animation: slideIn 0.33s cubic-bezier(.4,0,.2,1);
+  backdrop-filter: blur(24px) saturate(1.7);
 }
 
 @keyframes slideIn {
@@ -122,30 +129,34 @@
   }
 }
 
-.navList {
+.navList, .drawerMenuList {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.6rem;
+  margin-top: 3.8rem;
 }
 
-.navList li {
-  font-size: 18px;
+.navList li, .drawerMenuList li {
+  font-size: 1.13rem;
   font-weight: 700;
-  color: #333;
+  color: #2447a3;
   cursor: pointer;
+  border-radius: 1.2rem;
+  transition: background 0.18s, color 0.18s;
 }
 
-.navList li:hover {
-  color: #003087;
+.navList li:hover, .drawerMenuList li:hover {
+  background: #e8f0fe;
+  color: #2563eb;
 }
 
-.navList li:focus-visible {
-  outline: 2px solid #1967d2;
+.navList li:focus-visible, .drawerMenuList li:focus-visible {
+  outline: 2px solid #2563eb;
   outline-offset: 2px;
-  border-radius: 4px;
+  border-radius: 1.2rem;
 }
 
 .actionBtns {
@@ -155,13 +166,48 @@
 }
 
 .contactBtn,
-.loginBtn {
+.loginBtn, .drawerMenuBtn {
   width: 100%;
-  padding: 0.8rem;
-  border-radius: 8px;
+  padding: 0.93rem 1.1rem;
+  border-radius: 1.1rem;
   font-weight: 700;
+  font-size: 1.07rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  background: #fff;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+  box-shadow: 0 1.5px 8px rgba(37,99,235,0.08);
+  transition: background 0.19s, color 0.19s, border 0.15s, transform 0.13s;
+  margin-bottom: 0.09rem;
+}
+.drawerMenuBtn:hover, .drawerMenuBtn:focus {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+  transform: scale(1.035);
+}
+.drawerMenuBtn:hover, .drawerMenuBtn:focus {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+  transform: scale(1.03);
+}
+.drawerCloseBtn {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.5rem;
+  font-size: 2.2rem;
+  color: #8ca0c7;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.18s;
+  z-index: 10;
+}
+.drawerCloseBtn:hover,
+.drawerCloseBtn:focus {
+  color: #2447a3;
+  background: rgba(37,99,235,0.07);
 }
 
 .contactBtn {

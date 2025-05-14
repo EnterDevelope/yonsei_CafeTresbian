@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const DesktopHeader = ({ onContactClick }) => {
+const DesktopHeader = ({ onContactClick, onMenuClick }) => {
   const scrollToSection = (id) => {
     if (id === 'top') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -28,9 +28,14 @@ const DesktopHeader = ({ onContactClick }) => {
         </Link>
         {/* 네비게이션 */}
         <nav className="flex items-center gap-6">
-          <Link to="/menu" className="text-[var(--color-text-secondary)] text-base font-medium px-2.5 py-1.5 rounded-md transition-all hover:text-[var(--color-primary)] hover:bg-[var(--color-primary-light)] focus:text-[var(--color-primary)] focus:bg-[var(--color-primary-light)] active:text-[var(--color-primary-dark)]">
-            메뉴
-          </Link>
+          <button
+            type="button"
+            className="text-[var(--color-text-secondary)] text-base font-medium px-2.5 py-1.5 rounded-md transition-all hover:text-[var(--color-primary)] hover:bg-[var(--color-primary-light)] focus:text-[var(--color-primary)] focus:bg-[var(--color-primary-light)] active:text-[var(--color-primary-dark)] outline-none"
+            style={{background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(4px)', fontWeight:'700', fontSize:'1.08rem'}}
+            onClick={onMenuClick}
+          >
+            🍽️ 메뉴
+          </button>
           <Link to="/services" className="text-[var(--color-text-secondary)] text-base font-medium px-2.5 py-1.5 rounded-md transition-all hover:text-[var(--color-primary)] hover:bg-[var(--color-primary-light)] focus:text-[var(--color-primary)] focus:bg-[var(--color-primary-light)] active:text-[var(--color-primary-dark)]">
             서비스
           </Link>
