@@ -1,16 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { trackButtonClick } from '../../../shared/utils/gtm';
 
 const DesktopHeader = ({ onContactClick, onMenuClick }) => {
-  const scrollToSection = (id) => {
-    if (id === 'top') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      const section = document.getElementById(id);
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+  const handleMenuClick = () => {
+    trackButtonClick('menu_button', 'desktop_header');
+    onMenuClick();
+  };
+
+  const handleContactClick = () => {
+    trackButtonClick('contact_button', 'desktop_header');
+    onContactClick();
+  };
+
+  const handleNavigationClick = (pageName) => {
+    trackButtonClick(`nav_${pageName}`, 'desktop_header');
   };
 
   return (
@@ -32,21 +36,29 @@ const DesktopHeader = ({ onContactClick, onMenuClick }) => {
             type="button"
             className="text-[var(--color-text-secondary)] text-base font-medium px-2.5 py-1.5 rounded-md transition-all hover:text-[var(--color-primary)] hover:bg-[var(--color-primary-light)] focus:text-[var(--color-primary)] focus:bg-[var(--color-primary-light)] active:text-[var(--color-primary-dark)] outline-none"
             style={{background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(4px)', fontWeight:'700', fontSize:'1.08rem'}}
-            onClick={onMenuClick}
+            onClick={handleMenuClick}
           >
             🍽️ 메뉴
           </button>
-          <Link to="/services" className="text-[var(--color-text-secondary)] text-base font-medium px-2.5 py-1.5 rounded-md transition-all hover:text-[var(--color-primary)] hover:bg-[var(--color-primary-light)] focus:text-[var(--color-primary)] focus:bg-[var(--color-primary-light)] active:text-[var(--color-primary-dark)]">
+          <Link 
+            to="/services" 
+            className="text-[var(--color-text-secondary)] text-base font-medium px-2.5 py-1.5 rounded-md transition-all hover:text-[var(--color-primary)] hover:bg-[var(--color-primary-light)] focus:text-[var(--color-primary)] focus:bg-[var(--color-primary-light)] active:text-[var(--color-primary-dark)]"
+            onClick={() => handleNavigationClick('services')}
+          >
             서비스
           </Link>
-          <Link to="/about" className="text-[var(--color-text-secondary)] text-base font-medium px-2.5 py-1.5 rounded-md transition-all hover:text-[var(--color-primary)] hover:bg-[var(--color-primary-light)] focus:text-[var(--color-primary)] focus:bg-[var(--color-primary-light)] active:text-[var(--color-primary-dark)]">
+          <Link 
+            to="/about" 
+            className="text-[var(--color-text-secondary)] text-base font-medium px-2.5 py-1.5 rounded-md transition-all hover:text-[var(--color-primary)] hover:bg-[var(--color-primary-light)] focus:text-[var(--color-primary)] focus:bg-[var(--color-primary-light)] active:text-[var(--color-primary-dark)]"
+            onClick={() => handleNavigationClick('about')}
+          >
             소개
           </Link>
         </nav>
         {/* 문의 버튼 */}
         <button
           className="text-[1.05rem] font-medium py-2 px-5 border-none rounded-full bg-[var(--color-primary)] text-white shadow-[0_2px_10px_rgba(37,99,235,0.09)] cursor-pointer transition-colors duration-150 ml-5 hover:bg-[var(--color-primary-dark)] focus:bg-[var(--color-primary-dark)] active:bg-[var(--color-primary-dark)] outline-none focus-visible:outline-2 focus-visible:outline-[var(--color-primary-light)] focus-visible:outline-offset-2"
-          onClick={onContactClick}
+          onClick={handleContactClick}
         >
           카페 문의하기
         </button>

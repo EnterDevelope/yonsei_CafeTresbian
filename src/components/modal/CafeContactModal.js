@@ -1,13 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import BaseModal from './BaseModal';
 import { MODAL_CONTAINER_CLASS } from './modalClassNames';
+import { trackModalOpen, trackModalClose, trackButtonClick } from '../../shared/utils/gtm';
 
 const CafeContactModal = ({ isOpen, onClose }) => {
+  // 모달 열기/닫기 이벤트 추적
+  useEffect(() => {
+    if (isOpen) {
+      trackModalOpen('cafe_contact_modal');
+    }
+  }, [isOpen]);
+
+  const handleClose = () => {
+    trackModalClose('cafe_contact_modal');
+    onClose();
+  };
+
+  const handlePhoneClick = () => {
+    trackButtonClick('phone_call', 'cafe_contact_modal');
+  };
+
+  const handleEmailClick = () => {
+    trackButtonClick('email_contact', 'cafe_contact_modal');
+  };
+
   return (
-    <BaseModal isOpen={isOpen} onClose={onClose} className={MODAL_CONTAINER_CLASS}>
+    <BaseModal isOpen={isOpen} onClose={handleClose} className={MODAL_CONTAINER_CLASS}>
       <button
         className="absolute top-5 right-6 bg-transparent border-none text-2xl text-gray-400 cursor-pointer z-20 rounded-full transition-colors duration-150 p-1 hover:bg-blue-100 hover:text-blue-900 focus:bg-blue-100 focus:text-blue-900"
-        onClick={onClose}
+        onClick={handleClose}
         aria-label="닫기"
       >
         &times;
@@ -20,12 +41,24 @@ const CafeContactModal = ({ isOpen, onClose }) => {
       <div className="flex items-center gap-2 text-[1.04rem] mb-1">
         <span className="text-blue-600 text-lg mr-1" aria-hidden>☎️</span>
         <span>전화번호:</span>
-        <a href="tel:0221236933" className="text-blue-600 underline transition-colors duration-150 hover:text-blue-900 focus:text-blue-900">02-2123-6933</a>
+        <a 
+          href="tel:0221236933" 
+          className="text-blue-600 underline transition-colors duration-150 hover:text-blue-900 focus:text-blue-900"
+          onClick={handlePhoneClick}
+        >
+          02-2123-6933
+        </a>
       </div>
       <div className="flex items-center gap-2 text-[1.04rem] mb-1">
         <span className="text-blue-600 text-lg mr-1" aria-hidden>📧</span>
         <span>이메일:</span>
-        <a href="mailto:yscoop01@yonsei.ac.kr" className="text-blue-600 underline transition-colors duration-150 hover:text-blue-900 focus:text-blue-900">yscoop01@yonsei.ac.kr</a>
+        <a 
+          href="mailto:yscoop01@yonsei.ac.kr" 
+          className="text-blue-600 underline transition-colors duration-150 hover:text-blue-900 focus:text-blue-900"
+          onClick={handleEmailClick}
+        >
+          yscoop01@yonsei.ac.kr
+        </a>
       </div>
     </BaseModal>
   );

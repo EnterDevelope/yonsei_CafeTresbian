@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
 import TogobagModal from '../../modal/TogobagModal';
 
-// scrollToSection 함수 정의 추가 (주석 해제)
-const scrollToSection = (id) => {
-  const section = document.getElementById(id);
-  if (section) {
-    section.scrollIntoView({ behavior: 'smooth' });
-  }
-};
-
 const MobileServices = ({ onContactClick }) => {
   const [isTogobagOpen, setIsTogobagOpen] = useState(false);
   console.log('MobileServices rendering'); // 디버깅용 로그

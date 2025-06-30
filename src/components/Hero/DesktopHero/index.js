@@ -1,14 +1,6 @@
 import React from 'react';
 import HeroBubbles from '../HeroBubbles';
 
-// 스크롤 함수 추가
-const scrollToSection = (id) => {
-  const section = document.getElementById(id);
-  if (section) {
-    section.scrollIntoView({ behavior: 'smooth' });
-  }
-};
-
 const DesktopHero = ({ onContactClick }) => {
   console.log('DesktopHero rendering'); // 디버깅용 로그
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './styles.module.css';
+import { trackButtonClick } from '../../../shared/utils/gtm';
 
 const MobileHeader = ({ onContactClick, onMenuClick }) => {
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
@@ -10,6 +11,7 @@ const MobileHeader = ({ onContactClick, onMenuClick }) => {
     document.addEventListener('keydown', handleEsc);
     return () => document.removeEventListener('keydown', handleEsc);
   }, [isDrawerOpen]);
+
   const scrollToSection = (id) => {
     if (id === 'top') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -19,6 +21,28 @@ const MobileHeader = ({ onContactClick, onMenuClick }) => {
         section.scrollIntoView({ behavior: 'smooth' });
       }
     }
+  };
+
+  const handleMenuButtonClick = () => {
+    trackButtonClick('mobile_menu_button', 'mobile_header');
+    setIsDrawerOpen(true);
+  };
+
+  const handleDrawerMenuClick = (menuName) => {
+    trackButtonClick(`mobile_nav_${menuName}`, 'mobile_header');
+    setIsDrawerOpen(false);
+    
+    if (menuName === 'menu') {
+      onMenuClick();
+    } else if (menuName === 'services') {
+      scrollToSection('services');
+    } else if (menuName === 'about') {
+      scrollToSection('about');
+    }
+  };
+
+  const handleDrawerClose = () => {
+    setIsDrawerOpen(false);
   };
 
   return (
@@ -35,7 +59,7 @@ const MobileHeader = ({ onContactClick, onMenuClick }) => {
 
           <button
             className={styles.menuButton}
-            onClick={() => setIsDrawerOpen(true)}
+            onClick={handleMenuButtonClick}
             aria-label="메뉴 열기"
           >
             <span className={styles.menuIcon}></span>
@@ -46,11 +70,11 @@ const MobileHeader = ({ onContactClick, onMenuClick }) => {
 
     {isDrawerOpen && (
       <>
-        <div className={styles.drawerOverlay} onClick={() => setIsDrawerOpen(false)} />
+        <div className={styles.drawerOverlay} onClick={handleDrawerClose} />
         <nav className={styles.drawer}>
           <button
             className={styles.drawerCloseBtn}
-            onClick={() => setIsDrawerOpen(false)}
+            onClick={handleDrawerClose}
             aria-label="닫기"
           >
             ×
@@ -59,10 +83,7 @@ const MobileHeader = ({ onContactClick, onMenuClick }) => {
             <li>
               <button
                 className={styles.drawerMenuBtn}
-                onClick={() => {
-                  setIsDrawerOpen(false);
-                  onMenuClick();
-                }}
+                onClick={() => handleDrawerMenuClick('menu')}
               >
                 메뉴
               </button>
@@ -70,10 +91,7 @@ const MobileHeader = ({ onContactClick, onMenuClick }) => {
             <li>
               <button
                 className={styles.drawerMenuBtn}
-                onClick={() => {
-                  setIsDrawerOpen(false);
-                  scrollToSection('services');
-                }}
+                onClick={() => handleDrawerMenuClick('services')}
               >
                 서비스
               </button>
@@ -81,10 +99,7 @@ const MobileHeader = ({ onContactClick, onMenuClick }) => {
             <li>
               <button
                 className={styles.drawerMenuBtn}
-                onClick={() => {
-                  setIsDrawerOpen(false);
-                  scrollToSection('about');
-                }}
+                onClick={() => handleDrawerMenuClick('about')}
               >
                 소개
               </button>
