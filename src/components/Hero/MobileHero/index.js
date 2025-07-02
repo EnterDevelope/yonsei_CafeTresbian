@@ -59,8 +59,7 @@ const MobileHero = ({ onContactClick }) => {
                 }
                 // GA4 이벤트 전송
                 window.dataLayer && window.dataLayer.push({
-                  event: 'button_click',
-                  button_name: 'catering_cta',
+                  event: 'catering_cta_click',
                   location: 'hero',
                   page_path: window.location.pathname
                 });
@@ -77,8 +76,7 @@ const MobileHero = ({ onContactClick }) => {
                 }
                 // GA4 이벤트 전송
                 window.dataLayer && window.dataLayer.push({
-                  event: 'button_click',
-                  button_name: 'togo_cta',
+                  event: 'togo_cta_click',
                   location: 'hero',
                   page_path: window.location.pathname
                 });
