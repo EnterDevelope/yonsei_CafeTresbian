@@ -24,14 +24,29 @@ const MobileHeader = ({ onContactClick, onMenuClick }) => {
   };
 
   const handleMenuButtonClick = () => {
-    trackButtonClick('mobile_menu_button', 'mobile_header');
+    window.dataLayer && window.dataLayer.push({
+      event: 'menu_button_click',
+      location: 'header',
+      device: 'mobile',
+      page_path: window.location.pathname
+    });
     setIsDrawerOpen(true);
   };
 
   const handleDrawerMenuClick = (menuName) => {
-    trackButtonClick(`mobile_nav_${menuName}`, 'mobile_header');
+    let eventName = '';
+    if (menuName === 'menu') eventName = 'menu_button_click';
+    if (menuName === 'services') eventName = 'services_button_click';
+    if (menuName === 'about') eventName = 'about_button_click';
+    if (eventName) {
+      window.dataLayer && window.dataLayer.push({
+        event: eventName,
+        location: 'header',
+        device: 'mobile',
+        page_path: window.location.pathname
+      });
+    }
     setIsDrawerOpen(false);
-    
     if (menuName === 'menu') {
       onMenuClick();
     } else if (menuName === 'services') {

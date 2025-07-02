@@ -4,7 +4,12 @@ import { trackButtonClick } from '../../../shared/utils/gtm';
 
 const DesktopHeader = ({ onContactClick, onMenuClick }) => {
   const handleMenuClick = () => {
-    trackButtonClick('menu_button', 'desktop_header');
+    window.dataLayer && window.dataLayer.push({
+      event: 'menu_button_click',
+      location: 'header',
+      device: 'desktop',
+      page_path: window.location.pathname
+    });
     onMenuClick();
   };
 
@@ -14,7 +19,17 @@ const DesktopHeader = ({ onContactClick, onMenuClick }) => {
   };
 
   const handleNavigationClick = (pageName) => {
-    trackButtonClick(`nav_${pageName}`, 'desktop_header');
+    let eventName = '';
+    if (pageName === 'services') eventName = 'services_button_click';
+    if (pageName === 'about') eventName = 'about_button_click';
+    if (eventName) {
+      window.dataLayer && window.dataLayer.push({
+        event: eventName,
+        location: 'header',
+        device: 'desktop',
+        page_path: window.location.pathname
+      });
+    }
   };
 
   return (
