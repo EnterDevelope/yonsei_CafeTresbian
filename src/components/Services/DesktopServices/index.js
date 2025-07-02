@@ -23,7 +23,14 @@ const DesktopServices = ({ onContactClick }) => {
             <p className="text-base text-[var(--color-text-secondary)] mb-6">동아리 모임, 학과 세미나, 스터디 그룹 등 다양한 행사의 규모와 성격에 맞춘 케이터링을 신청해보세요. 신선한 재료로 만든 맛있는 디저트와 음료로 행사의 퀄리티를 높여드립니다.</p>
             <button 
               className="py-2.5 px-7 rounded-full text-base font-semibold cursor-pointer transition-colors duration-150 outline-none border-none bg-blue-600 text-white shadow hover:bg-blue-900"
-              onClick={onContactClick}
+              onClick={(e) => {
+                window.dataLayer && window.dataLayer.push({
+                  event: 'catering_estimate_click',
+                  location: 'services',
+                  page_path: window.location.pathname
+                });
+                onContactClick && onContactClick(e);
+              }}
             >
               케이터링 견적받기
             </button>
@@ -44,7 +51,14 @@ const DesktopServices = ({ onContactClick }) => {
             <p className="text-base text-[var(--color-text-secondary)] mb-6">바쁜 학생과 교직원을 위해 준비했습니다. 간편하게 픽업해가 실 수 있도록 포장해드립니다.</p>
             <button 
               className="py-2.5 px-7 rounded-full text-base font-semibold cursor-pointer transition-colors duration-150 outline-none border-none bg-sky-500 text-white shadow hover:bg-sky-600"
-              onClick={() => setIsTogobagOpen(true)}
+              onClick={() => {
+                window.dataLayer && window.dataLayer.push({
+                  event: 'store_info_click',
+                  location: 'services',
+                  page_path: window.location.pathname
+                });
+                setIsTogobagOpen(true);
+              }}
             >
               매장 운영 정보
             </button>
