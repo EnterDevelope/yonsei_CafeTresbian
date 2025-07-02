@@ -33,6 +33,13 @@ const DesktopHero = ({ onContactClick }) => {
                     servicesSection.scrollIntoView({ behavior: 'smooth' });
                   }
                 }
+                // GA4 이벤트 전송
+                window.dataLayer && window.dataLayer.push({
+                  event: 'button_click',
+                  button_name: 'catering_cta',
+                  location: 'hero',
+                  page_path: window.location.pathname
+                });
               }}
               tabIndex={0}
               aria-label="케이터링 알아보기"
@@ -51,6 +58,13 @@ const DesktopHero = ({ onContactClick }) => {
                     servicesSection.scrollIntoView({ behavior: 'smooth' });
                   }
                 }
+                // GA4 이벤트 전송
+                window.dataLayer && window.dataLayer.push({
+                  event: 'button_click',
+                  button_name: 'togo_cta',
+                  location: 'hero',
+                  page_path: window.location.pathname
+                });
               }}
               tabIndex={0}
               aria-label="To-go 서비스 안내"

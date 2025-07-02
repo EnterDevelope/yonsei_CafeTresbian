@@ -52,13 +52,37 @@ const MobileHero = ({ onContactClick }) => {
           <div className="flex flex-col items-center gap-3 w-full">
             <button
               className="py-3 px-6 rounded-lg text-base font-medium cursor-pointer transition-all border-none text-center whitespace-nowrap w-4/5 max-w-[300px] bg-[var(--color-primary)] text-[var(--color-background)] shadow-sm hover:bg-[var(--color-primary-dark)] hover:shadow-md hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-primary-light)]"
-              onClick={() => scrollToSection('services')}
+              onClick={() => {
+                const servicesSection = document.getElementById('services');
+                if (servicesSection) {
+                  servicesSection.scrollIntoView({ behavior: 'smooth' });
+                }
+                // GA4 이벤트 전송
+                window.dataLayer && window.dataLayer.push({
+                  event: 'button_click',
+                  button_name: 'catering_cta',
+                  location: 'hero',
+                  page_path: window.location.pathname
+                });
+              }}
             >
               케이터링 알아보기
             </button>
             <button
               className="py-3 px-6 rounded-lg text-base font-medium cursor-pointer transition-all border text-center whitespace-nowrap w-4/5 max-w-[300px] bg-[var(--color-background)] text-[var(--color-primary)] border-[var(--color-border)] shadow-sm hover:bg-[var(--color-primary-light)] hover:border-[var(--color-primary-light)] hover:shadow-md hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-primary-light)]"
-              onClick={() => scrollToSection('togo-service-card')}
+              onClick={() => {
+                const togoCard = document.getElementById('togo-service-card');
+                if (togoCard) {
+                  togoCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                // GA4 이벤트 전송
+                window.dataLayer && window.dataLayer.push({
+                  event: 'button_click',
+                  button_name: 'togo_cta',
+                  location: 'hero',
+                  page_path: window.location.pathname
+                });
+              }}
             >
               To-go 서비스 안내
             </button>
