@@ -17,7 +17,11 @@ const CateringEstimateModal = ({ isOpen, onClose }) => {
   };
 
   const handleDownload = () => {
-    trackButtonClick('download_catering_form', 'catering_estimate_modal');
+    window.dataLayer && window.dataLayer.push({
+      event: 'catering_form_download_click',
+      location: 'catering_estimate_modal',
+      page_path: window.location.pathname
+    });
     const link = document.createElement('a');
     link.href = 'files/catering_order.xlsx';
     link.download = 'catering_order.xlsx';
