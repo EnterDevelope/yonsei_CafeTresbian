@@ -1,8 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { trackButtonClick } from '../../../shared/utils/gtm';
 
 const DesktopHeader = ({ onContactClick, onMenuClick }) => {
+  const { pathname } = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 8);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleMenuClick = () => {
     window.dataLayer && window.dataLayer.push({
       event: 'menu_button_click',
@@ -19,12 +32,14 @@ const DesktopHeader = ({ onContactClick, onMenuClick }) => {
   };
 
   const handleNavigationClick = (pageName) => {
-    let eventName = '';
-    if (pageName === 'services') eventName = 'services_button_click';
-    if (pageName === 'about') eventName = 'about_button_click';
-    if (eventName) {
+    const events = {
+      services: 'services_button_click',
+      about: 'about_button_click'
+    };
+
+    if (events[pageName]) {
       window.dataLayer && window.dataLayer.push({
-        event: eventName,
+        event: events[pageName],
         location: 'header',
         device: 'desktop',
         page_path: window.location.pathname
@@ -32,48 +47,60 @@ const DesktopHeader = ({ onContactClick, onMenuClick }) => {
     }
   };
 
+  const navItems = [
+    { id: 'menu', label: '메뉴', type: 'menu' },
+    { id: 'services', label: '서비스', type: 'link', to: '/services' },
+    { id: 'about', label: '소개', type: 'link', to: '/about' },
+  ];
+
   return (
-    // 헤더 전체 래퍼
-    <header className="fixed top-0 left-0 right-0 bg-[var(--color-background)] shadow-sm z-[1000] border-b border-[var(--color-border)]">
-      {/* 내부 컨테이너 */}
-      <div className="flex items-center justify-between max-w-[1200px] mx-auto px-6 py-2 h-[70px]">
-        {/* 로고 영역 */}
-        <Link to="/" className="flex items-center gap-3 no-underline">
+    <header
+      className={`fixed inset-x-0 top-0 z-[1000] border-b transition-all duration-300 ${
+        isScrolled
+          ? 'border-slate-200 bg-white/95 shadow-lg backdrop-blur-md'
+          : 'border-transparent bg-white/80 backdrop-blur-sm'
+      }`}
+    >
+      <div className="mx-auto flex h-16 w-full max-w-content-lg items-center justify-between px-4 lg:h-20 lg:px-8">
+        <Link to="/" className="flex items-center gap-2 no-underline">
           <img
             src={`${process.env.PUBLIC_URL}/cafe_logo.png`}
             alt="트레비앙 로고"
-            className="w-[100px] h-[108px] object-contain"
+            className="h-12 w-auto object-contain lg:h-14"
           />
         </Link>
-        {/* 네비게이션 */}
-        <nav className="flex items-center gap-6">
-          <button
-            type="button"
-            className="text-[var(--color-text-secondary)] text-base font-medium px-2.5 py-1.5 rounded-md transition-all hover:text-[var(--color-primary)] hover:bg-[var(--color-primary-light)] focus:text-[var(--color-primary)] focus:bg-[var(--color-primary-light)] active:text-[var(--color-primary-dark)] outline-none"
-            style={{background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(4px)', fontWeight:'700', fontSize:'1.08rem'}}
-            onClick={handleMenuClick}
-          >
-            🍽️ 메뉴
-          </button>
-          <Link 
-            to="/services" 
-            className="text-[var(--color-text-secondary)] text-base font-medium px-2.5 py-1.5 rounded-md transition-all hover:text-[var(--color-primary)] hover:bg-[var(--color-primary-light)] focus:text-[var(--color-primary)] focus:bg-[var(--color-primary-light)] active:text-[var(--color-primary-dark)]"
-            onClick={() => handleNavigationClick('services')}
-          >
-            서비스
-          </Link>
-          <Link 
-            to="/about" 
-            className="text-[var(--color-text-secondary)] text-base font-medium px-2.5 py-1.5 rounded-md transition-all hover:text-[var(--color-primary)] hover:bg-[var(--color-primary-light)] focus:text-[var(--color-primary)] focus:bg-[var(--color-primary-light)] active:text-[var(--color-primary-dark)]"
-            onClick={() => handleNavigationClick('about')}
-          >
-            소개
-          </Link>
+        <nav className="flex items-center gap-4 text-base">
+          {navItems.map((item) =>
+            item.type === 'menu' ? (
+              <button
+                key={item.id}
+                type="button"
+                onClick={handleMenuClick}
+                className="inline-flex items-center gap-1 rounded-full border border-slate-200/70 bg-white/80 px-5 py-2 font-semibold text-slate-600 shadow-sm backdrop-blur hover:border-brand-blue hover:text-brand-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
+              >
+                <span aria-hidden>🍽️</span>
+                {item.label}
+              </button>
+            ) : (
+              <Link
+                key={item.id}
+                to={item.to}
+                onClick={() => handleNavigationClick(item.id)}
+                className={`rounded-full px-4 py-2 font-semibold transition ${
+                  pathname === item.to
+                    ? 'bg-brand-blue/10 text-brand-blue'
+                    : 'text-slate-500 hover:bg-slate-100 hover:text-brand-blue'
+                }`}
+                aria-current={pathname === item.to ? 'page' : undefined}
+              >
+                {item.label}
+              </Link>
+            )
+          )}
         </nav>
-        {/* 문의 버튼 */}
         <button
-          className="text-[1.05rem] font-medium py-2 px-5 border-none rounded-full bg-[var(--color-primary)] text-white shadow-[0_2px_10px_rgba(37,99,235,0.09)] cursor-pointer transition-colors duration-150 ml-5 hover:bg-[var(--color-primary-dark)] focus:bg-[var(--color-primary-dark)] active:bg-[var(--color-primary-dark)] outline-none focus-visible:outline-2 focus-visible:outline-[var(--color-primary-light)] focus-visible:outline-offset-2"
           onClick={handleContactClick}
+          className="rounded-pill bg-brand-blue px-6 py-2.5 text-base font-semibold text-white shadow-card transition hover:bg-brand-blueDark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blueLight"
         >
           카페 문의하기
         </button>

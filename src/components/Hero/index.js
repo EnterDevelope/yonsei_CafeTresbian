@@ -3,14 +3,10 @@ import { useResponsive } from '../../shared/hooks/useResponsive';
 import MobileHero from './MobileHero';
 import DesktopHero from './DesktopHero';
 
-const Hero = ({ onContactClick }) => {
+const Hero = () => {
   const { isMobile } = useResponsive();
-  
-  return isMobile ? (
-    <MobileHero onContactClick={onContactClick} />
-  ) : (
-    <DesktopHero onContactClick={onContactClick} />
-  );
+
+  return isMobile ? <MobileHero /> : <DesktopHero />;
 };
 
 export default Hero; 

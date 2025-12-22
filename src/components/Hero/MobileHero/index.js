@@ -1,89 +1,81 @@
 import React from 'react';
 import HeroBubbles from '../HeroBubbles';
 
-// 스크롤 함수 추가
-const scrollToSection = (id) => {
-  const section = document.getElementById(id);
-  if (section) {
-    // 헤더 높이만큼 오프셋 추가 (옵션)
-    const headerOffset = 70; // 헤더 높이 (DesktopHeader/styles.module.css 참조)
-    const elementPosition = section.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+const heroHighlights = [
+  '합리적 가격',
+  '간편 포장',
+  '행사 맞춤 디저트·음료',
+];
 
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth'
+const MobileHero = () => {
+  const handleScrollTo = (targetId, eventName) => {
+    const element = document.getElementById(targetId) || document.getElementById('services');
+    element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    window.dataLayer && window.dataLayer.push({
+      event: eventName,
+      location: 'hero',
+      page_path: window.location.pathname,
     });
-    // 기본 스크롤 (오프셋 없이)
-    // section.scrollIntoView({ behavior: 'smooth' });
-  } else {
-    console.warn(`Element with id '${id}' not found for scrolling.`);
-  }
-};
+  };
 
-const MobileHero = ({ onContactClick }) => {
   return (
-    // Hero 섹션 전체 래퍼
-    <section className="py-12 px-4 bg-[var(--color-background)] overflow-hidden text-center" id="hero">
-      {/* Hero 컨테이너 */}
-      <div className="flex flex-col items-center gap-8">
-        {/* 이미지 영역 */}
-        <div className="w-full order-1 mb-6 relative">
-          {/* 애니메이션 원 그룹 */}
-          <HeroBubbles variant="mobile" />
+    <section className="overflow-hidden bg-white px-4 pb-16 pt-8 text-center" id="hero">
+      <div className="mx-auto flex max-w-md flex-col items-center gap-10">
+        <div className="relative w-full">
+          <div className="absolute inset-0 rounded-[32px] bg-hero-gradient blur-3xl" aria-hidden />
+          <HeroBubbles />
           <img
-            src={process.env.PUBLIC_URL + '/cafe_image.png'}
+            src={`${process.env.PUBLIC_URL}/cafe_image.png`}
             alt="카페 트레비앙 내부 전경"
-            className="w-full max-w-[400px] h-auto rounded-2xl shadow-md object-cover aspect-[16/10] block mx-auto relative z-10"
             loading="eager"
+            className="relative z-10 w-full rounded-[32px] border border-white/70 object-cover shadow-floating"
           />
         </div>
-        {/* 텍스트 영역 */}
-        <div className="w-full order-2">
-          <h1 className="text-[clamp(2rem,4vw,2.5rem)] font-bold text-[var(--color-text-primary)] leading-tight mb-2.5">
-            동아리 행사·세미나 준비는<br />
-            <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent-indigo)] bg-clip-text text-transparent font-bold px-0.5">트레비앙에서!</span> <br />
-            맞춤 케이터링 & To-go Bag
+        <div className="space-y-6">
+          <div className="inline-flex items-center gap-2 rounded-pill border border-brand-blue/20 bg-brand-blue/5 px-4 py-1 text-xs font-semibold text-brand-blue">
+            Yonsei Café Trebien
+          </div>
+          <h1 className="text-3xl font-extrabold leading-snug text-slate-900">
+            동아리 행사·세미나 준비,
+            <br />
+            <span className="bg-gradient-to-r from-brand-blue to-brand-indigo bg-clip-text text-transparent">
+              트레비앙에서!
+            </span>
           </h1>
-          <p className="text-[var(--color-text-secondary)] text-base leading-normal mb-8 max-w-[480px] mx-auto">
-            합리적 가격·간편 포장·행사 맞춤 디저트·음료 제공
+          <p className="text-base text-slate-600">
+            케이터링과 To-go Bag 서비스로
+            <br />
+            빠르게 준비하는 연세대 공식 카페
           </p>
-          {/* CTA 버튼 영역 */}
-          <div className="flex flex-col items-center gap-3 w-full">
+          <div className="flex flex-wrap justify-center gap-2">
+            {heroHighlights.map((item) => (
+              <span
+                key={item}
+                className="rounded-full bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-500 shadow-sm ring-1 ring-slate-100"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+          <div className="flex flex-col items-center gap-3">
             <button
-              className="py-3 px-6 rounded-lg text-base font-medium cursor-pointer transition-all border-none text-center whitespace-nowrap w-4/5 max-w-[300px] bg-[var(--color-primary)] text-[var(--color-background)] shadow-sm hover:bg-[var(--color-primary-dark)] hover:shadow-md hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-primary-light)]"
-              onClick={() => {
-                const servicesSection = document.getElementById('services');
-                if (servicesSection) {
-                  servicesSection.scrollIntoView({ behavior: 'smooth' });
-                }
-                // GA4 이벤트 전송
-                window.dataLayer && window.dataLayer.push({
-                  event: 'catering_cta_click',
-                  location: 'hero',
-                  page_path: window.location.pathname
-                });
-              }}
+              type="button"
+              onClick={() => handleScrollTo('catering-service-card', 'catering_cta_click')}
+              className="w-full rounded-pill bg-brand-blue px-4 py-3 text-base font-semibold text-white shadow-card transition hover:-translate-y-0.5"
             >
               케이터링 알아보기
             </button>
             <button
-              className="py-3 px-6 rounded-lg text-base font-medium cursor-pointer transition-all border text-center whitespace-nowrap w-4/5 max-w-[300px] bg-[var(--color-background)] text-[var(--color-primary)] border-[var(--color-border)] shadow-sm hover:bg-[var(--color-primary-light)] hover:border-[var(--color-primary-light)] hover:shadow-md hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-primary-light)]"
-              onClick={() => {
-                const togoCard = document.getElementById('togo-service-card');
-                if (togoCard) {
-                  togoCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-                // GA4 이벤트 전송
-                window.dataLayer && window.dataLayer.push({
-                  event: 'togo_cta_click',
-                  location: 'hero',
-                  page_path: window.location.pathname
-                });
-              }}
+              type="button"
+              onClick={() => handleScrollTo('togo-service-card', 'togo_cta_click')}
+              className="w-full rounded-pill border border-brand-blue/40 bg-white px-4 py-3 text-base font-semibold text-brand-blue shadow-sm transition hover:-translate-y-0.5 hover:bg-brand-blue/5"
             >
               To-go 서비스 안내
             </button>
+          </div>
+          <div className="rounded-2xl bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700">
+            하단의 매장 운영 정보를 확인해주세요!
           </div>
         </div>
       </div>

@@ -3,8 +3,21 @@ import BaseModal from './BaseModal';
 import { MODAL_CONTAINER_CLASS } from './modalClassNames';
 import { trackModalOpen, trackModalClose, trackButtonClick } from '../../shared/utils/gtm';
 
+const ContactRow = ({ icon, label, value, href, onClick }) => (
+  <a
+    href={href}
+    onClick={onClick}
+    className="flex items-center justify-between rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3 text-base font-semibold text-slate-700 transition hover:border-brand-blue/30"
+  >
+    <span className="flex items-center gap-2">
+      <span aria-hidden>{icon}</span>
+      {label}
+    </span>
+    <span className="text-brand-blue">{value}</span>
+  </a>
+);
+
 const CafeContactModal = ({ isOpen, onClose }) => {
-  // 모달 열기/닫기 이벤트 추적
   useEffect(() => {
     if (isOpen) {
       trackModalOpen('cafe_contact_modal');
@@ -16,49 +29,44 @@ const CafeContactModal = ({ isOpen, onClose }) => {
     onClose();
   };
 
-  const handlePhoneClick = () => {
-    trackButtonClick('phone_call', 'cafe_contact_modal');
-  };
-
-  const handleEmailClick = () => {
-    trackButtonClick('email_contact', 'cafe_contact_modal');
-  };
-
   return (
     <BaseModal isOpen={isOpen} onClose={handleClose} className={MODAL_CONTAINER_CLASS}>
-      <button
-        className="absolute top-5 right-6 bg-transparent border-none text-2xl text-gray-400 cursor-pointer z-20 rounded-full transition-colors duration-150 p-1 hover:bg-blue-100 hover:text-blue-900 focus:bg-blue-100 focus:text-blue-900"
-        onClick={handleClose}
-        aria-label="닫기"
-      >
-        &times;
-      </button>
-      <h3 className="text-xl font-bold mb-3 text-center">카페 문의</h3>
-      <div className="bg-[#eaf1ff] text-blue-900 font-bold rounded-xl py-4 px-6 my-4 text-center text-[1.13rem] border-[1.7px] border-[#b6ccfc] shadow-[0_1px_7px_rgba(30,64,175,0.08)] flex items-center gap-2 justify-center">
-        <span className="text-blue-600 text-lg mr-1" aria-hidden></span>
-        케이터링 관련은 케이터링 안내를 확인해주세요. <br/>(번호가 달라요!)
-      </div>
-      <div className="flex items-center gap-2 text-[1.04rem] mb-1">
-        <span className="text-blue-600 text-lg mr-1" aria-hidden>☎️</span>
-        <span>전화번호:</span>
-        <a 
-          href="tel:0221236933" 
-          className="text-blue-600 underline transition-colors duration-150 hover:text-blue-900 focus:text-blue-900"
-          onClick={handlePhoneClick}
-        >
-          02-2123-6933
-        </a>
-      </div>
-      <div className="flex items-center gap-2 text-[1.04rem] mb-1">
-        <span className="text-blue-600 text-lg mr-1" aria-hidden>📧</span>
-        <span>이메일:</span>
-        <a 
-          href="mailto:yscoop01@yonsei.ac.kr" 
-          className="text-blue-600 underline transition-colors duration-150 hover:text-blue-900 focus:text-blue-900"
-          onClick={handleEmailClick}
-        >
-          yscoop01@yonsei.ac.kr
-        </a>
+      <div className="space-y-6">
+        <div className="flex items-start justify-between">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wide text-brand-blue">
+              Contact
+            </p>
+            <h3 className="mt-2 text-2xl font-bold text-slate-900">카페 문의</h3>
+          </div>
+          <button
+            type="button"
+            aria-label="닫기"
+            onClick={handleClose}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-2xl text-slate-500 shadow-sm"
+          >
+            ×
+          </button>
+        </div>
+        <div className="rounded-3xl bg-brand-blue/5 px-5 py-4 text-center text-sm font-semibold text-brand-blue">
+          케이터링 문의는 케이터링 신청 버튼을 눌러 확인해주세요.<br></br>(일반 문의 번호와 케이터린 문의 번호가 달라요!)
+        </div>
+        <div className="space-y-3">
+          <ContactRow
+            icon="☎️"
+            label="전화번호"
+            value="02-2123-6933"
+            href="tel:0221236933"
+            onClick={() => trackButtonClick('phone_call', 'cafe_contact_modal')}
+          />
+          <ContactRow
+            icon="📧"
+            label="이메일"
+            value="yscoop01@yonsei.ac.kr"
+            href="mailto:yscoop01@yonsei.ac.kr"
+            onClick={() => trackButtonClick('email_contact', 'cafe_contact_modal')}
+          />
+        </div>
       </div>
     </BaseModal>
   );

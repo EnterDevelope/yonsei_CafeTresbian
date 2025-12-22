@@ -1,177 +1,82 @@
-import React, { useEffect, useState } from 'react';
-import styles from './styles.module.css';
+import React, { useState } from 'react';
+import { menuCategories, optionInfo } from '../menuData';
 
-const menuData = {
-  '커피 Coffee': [
-    { name: '아메리카노', eng: 'Americano', hot: 2.2, iced: 2.9 },
-    { name: '카페 모카', eng: 'Café Mocha', hot: 4.1, iced: 4.2 },
-    { name: '카라멜 마끼아또', eng: 'Caramel Macchiato', hot: 4.1, iced: 4.2 },
-    { name: '카페라떼', eng: 'Café Latte', hot: 3.5, iced: 3.7 },
-    { name: '바닐라 라떼', eng: 'Vanilla Latte', hot: 3.7, iced: 3.9 },
-    { name: '헤이즐넛 라떼', eng: 'Hazelnut Latte', hot: 3.7, iced: 3.9 },
-    { name: '토피넛 라떼', eng: 'Toffeenut Latte', hot: 4.2, iced: 4.4 },
-    { name: '사이공커피', eng: 'Saigon Coffee', hot: 4.2, iced: 4.2 },
-    { name: '카푸치노', eng: 'Cappuccino', hot: 3.7 },
-    { name: '에스프레소', eng: 'Espresso', hot: 2.3 },
-    { name: '콜드브루 커피', eng: 'Cold Brew Coffee', iced: 3.7, onlyIced: true },
-    { name: '콜드브루 라떼', eng: 'Cold Brew Latte', iced: 4.4, onlyIced: true },
-    { name: '아이스크림라떼', eng: 'Ice Cream Latte', iced: 4.5, onlyIced: true },
-    { name: '아포카토', eng: 'Affogato', iced: 3.2, onlyIced: true },
-  ],
-  '티/라떼 Tea/Latte': [
-    { name: '녹차', eng: 'Green Tea', hot: 2.5, iced: 2.5 },
-    { name: '홍차', eng: 'Black Tea', hot: 2.5, iced: 2.5 },
-    { name: '누룽지둥글레차', eng: "Solomon's Seal Tea", hot: 2.5, iced: 2.5 },
-    { name: '우엉차', eng: 'Burdock Tea', hot: 2.5, iced: 2.5 },
-    { name: '페퍼민트', eng: 'Peppermint Tea', hot: 2.5, iced: 2.5 },
-    { name: '캐모마일', eng: 'Chamomile Tea', hot: 2.5, iced: 2.5 },
-    { name: '루이보스', eng: 'Rooibos Tea', hot: 2.5, iced: 2.5 },
-    { name: '레몬차', eng: 'Lemon Tea', hot: 3.0, iced: 3.0 },
-    { name: '매실차', eng: 'Green Plum Tea', hot: 3.0, iced: 3.0 },
-    { name: '유자차', eng: 'Citron Tea', hot: 3.3, iced: 3.3 },
-    { name: '모과차', eng: 'Quince Tea', hot: 3.3, iced: 3.3 },
-    { name: '생강차', eng: 'Ginger Tea', hot: 3.3, iced: 3.3 },
-    { name: '자몽차', eng: 'Grapefruit Tea', hot: 4.0, iced: 4.0 },
-    { name: '초코라떼', eng: 'Choco Latte', hot: 3.7, iced: 3.9 },
-    { name: '그린티라떼', eng: 'Green-tea Latte', hot: 3.7, iced: 3.9 },
-    { name: '밀크티라떼', eng: 'Milk Tea Latte', hot: 3.7, iced: 3.9 },
-  ],
-  '스무디/오트 Smoothie/Oat': [
-    { name: '망고 스무디', eng: 'Mango Smoothie', iced: 5.0, onlyIced: true },
-    { name: '요거트 스무디', eng: 'Yogurt Smoothie', iced: 4.1, onlyIced: true },
-    { name: '타로버블티', eng: 'Taro Bubble Tea', iced: 3.7, onlyIced: true },
-    { name: '옥수수 크림 오트라떼', eng: 'Corn Cream Oat Latte', hot: 4.2 },
-    { name: '오트 리치 라떼', eng: 'Oat Rich Latte', hot: 4.1, iced: 4.2 },
-    { name: '오트 밀크티 라떼', eng: 'Oat Milk Tea Latte', hot: 4.1, iced: 4.2 },
-  ],
-  '주스/에이드 Juice/Ade': [
-    { name: '딸기바나나주스', eng: 'Strawberry & Banana Juice', iced: 5.0, onlyIced: true },
-    { name: '딸기주스', eng: 'Strawberry Juice', iced: 5.0, onlyIced: true },
-    { name: '바나나주스', eng: 'Banana Juice', iced: 5.0, onlyIced: true },
-    { name: '사과주스', eng: 'Apple Juice', iced: 5.0, onlyIced: true },
-    { name: '토마토주스', eng: 'Tomato Juice', iced: 5.0, onlyIced: true },
-    { name: '파인애플주스', eng: 'Pineapple Juice', iced: 5.0, onlyIced: true },
-    { name: '에이드(복분자/레몬/자몽/청포도)', eng: 'Ade (Raspberry/Lemon/Grape/Green grape)', iced: 3.9, onlyIced: true },
-    { name: '복숭아아이스티', eng: 'Peach Iced Tea', iced: 3.2, onlyIced: true },
-  ],
-  '블렌디드 Blended': [
-    { name: '바닐라 블렌디드', eng: 'Vanilla Blended', iced: 4.1, onlyIced: true },
-    { name: '그린티 블렌디드', eng: 'Greentea Blended', iced: 4.1, onlyIced: true },
-    { name: '초콜릿 블렌디드', eng: 'Chocolate Blended', iced: 4.1, onlyIced: true },
-    { name: '오레오 블렌디드', eng: 'Oreo Blended', iced: 4.1, onlyIced: true },
-    { name: '민트초코 블렌디드', eng: 'Mint Chocolate Blended', iced: 4.1, onlyIced: true },
-    { name: '초코바나나 블렌디드', eng: 'Chocolate Banana Blended', iced: 4.1, onlyIced: true },
-    { name: '쿠키바닐라버블 블렌디드', eng: 'Cookies Vanilla Bubble', iced: 4.5, onlyIced: true },
-  ],
-  '와플/기타 Waffle/Others': [
-    { name: '와플', eng: 'Waffle', price: 2.5 },
-    { name: '와플 아이스크림', eng: 'Waffle Ice Cream', price: 3.8 },
-    { name: '소프트아이스크림', eng: 'Soft Ice Cream', price: 2.2 },
-    { name: '토핑추가(누텔라/카야/로투스)', eng: 'Add toppings (Nutella/Kaya/Lotus)', price: 0.5, option: true },
-    { name: '우유/두유', eng: 'Milk/Soymilk', price: '2.7/1.2' },
-    { name: '미숫가루', eng: 'Powder made of mixed grains', price: 3.2 },
-    { name: '흑임자 미숫가루', eng: 'Roasted Black Sesame and Grain Latte', price: 4.2 },
-    { name: '탄산음료/전통식혜', eng: 'Soda/Sweet rice drink', price: '1.7/2.7' },
-  ],
+const formatPrice = (value) => {
+  if (value === undefined || value === null) return '-';
+  return typeof value === 'number' ? value.toFixed(1) : value;
 };
 
-const optionInfo = [
-  '샷 추가 0.6 / 시럽(바닐라, 헤이즐넛) 추가 0.5',
-  '와플 토핑(누텔라/카야/로투스) 추가 0.5',
-  '우유/두유 선택 가능',
-];
-
 const DesktopMenu = () => {
-  const [activeTab, setActiveTab] = useState(Object.keys(menuData)[0]);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [activeCategoryId, setActiveCategoryId] = useState(menuCategories[0].id);
+  const activeCategory = menuCategories.find((category) => category.id === activeCategoryId);
 
-  const handleTabClick = (tabName) => {
-    if (tabName !== activeTab) {
-      setIsAnimating(true);
-      setTimeout(() => {
-        setActiveTab(tabName);
-        setIsAnimating(false);
-      }, 150);
-    }
+  const getHotPrice = (item) => {
+    if (item.onlyIced) return '-';
+    return formatPrice(item.hot ?? item.price);
   };
 
-  useEffect(() => {
-    const adjustFontSize = () => {
-      const cells = document.querySelectorAll(`.${styles.menuCell}`);
-      cells.forEach((cell) => {
-        let fontSize = parseInt(window.getComputedStyle(cell).fontSize, 10);
-        while (cell.scrollWidth > cell.offsetWidth && fontSize > 10) {
-          fontSize -= 1;
-          cell.style.fontSize = `${fontSize}px`;
-        }
-      });
-    };
+  const getIcedPrice = (item) => {
+    if (item.onlyIced) {
+      return formatPrice(item.iced ?? item.price);
+    }
 
-    adjustFontSize();
-    window.addEventListener('resize', adjustFontSize);
-    return () => window.removeEventListener('resize', adjustFontSize);
-  }, []);
+    return formatPrice(item.iced ?? item.price);
+  };
 
   return (
-    <section className={styles.menuSection} id="menu">
-      <div className={styles.sectionTitleContainer}>
-        <span className={styles.sectionLabel}>Our Menu</span>
-        <h2 className={styles.sectionTitle}>카페 트레비앙 메뉴</h2>
+    <section id="menu" className="space-y-6 rounded-[24px] bg-white p-6 shadow-card">
+      <div className="text-center">
+        <p className="text-sm font-semibold uppercase tracking-wide text-brand-blue">Our Menu</p>
+        <h2 className="mt-1 text-2xl font-extrabold text-slate-900">카페 트레비앙 메뉴</h2>
+        <p className="mt-2 text-sm text-slate-600">
+          따뜻한 커피부터 디저트까지, 트레비앙의 대표 메뉴를 확인하세요.
+        </p>
       </div>
-
-      <div className={styles.menuTabs}>
-        {Object.keys(menuData).map((tabName) => (
+      <div className="flex flex-wrap gap-2 rounded-2xl bg-slate-50 p-2 text-sm">
+        {menuCategories.map((category) => (
           <button
-            key={tabName}
-            className={
-              `${styles.menuTab} ${activeTab === tabName ? styles.menuTabActive : ''}`
-            }
-            onClick={() => handleTabClick(tabName)}
-            aria-selected={activeTab === tabName}
-            role="tab"
-            tabIndex={0}
-            aria-label={`${tabName} 메뉴 카테고리`}
-            onKeyDown={e => {
-              if (e.key === 'Enter' || e.key === ' ') handleTabClick(tabName);
-            }}
+            key={category.id}
+            type="button"
+            onClick={() => setActiveCategoryId(category.id)}
+            className={`flex flex-col rounded-xl px-3 py-2 font-semibold transition ${
+              activeCategoryId === category.id
+                ? 'bg-white text-brand-blue shadow-sm'
+                : 'text-slate-500 hover:text-brand-blue'
+            }`}
           >
-            {tabName}
+            {category.label}
+            <span className="text-xs font-medium text-slate-400">{category.subLabel}</span>
           </button>
         ))}
       </div>
-
-      <div 
-        className={`${styles.menuTable} ${isAnimating ? styles.fadeOut : ''}`}
-        role="tabpanel"
-        aria-labelledby={`tab-${activeTab}`}
-      >
-        <div className={styles.menuRow + ' font-bold bg-gray-100'}>
-          <div className={styles.menuCell}>메뉴</div>
-          <div className={styles.menuCell}>영문</div>
-          <div className={styles.menuCell}>HOT</div>
-          <div className={styles.menuCell}>ICED</div>
+      <div className="overflow-hidden rounded-[20px] border border-slate-100">
+        <div className="grid grid-cols-4 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-600 uppercase tracking-wide">
+          <span>메뉴</span>
+          <span>영문</span>
+          <span>HOT</span>
+          <span>ICED</span>
         </div>
-        {menuData[activeTab].map((item, index) => (
-          <div key={index} className={styles.menuRow}>
-            <div className={styles.menuCell}>{item.name}</div>
-            <div className={styles.menuCell}>{item.eng}</div>
-            <div className={styles.menuCell}>{
-              item.onlyIced ? '-' : (item.hot ?? (item.price ?? '-'))
-            }</div>
-            <div className={styles.menuCell}>{
-              item.onlyIced ? (item.iced ?? item.price ?? '-') : (item.iced ?? (item.price ?? '-'))
-            }</div>
-          </div>
-        ))}
+        <div className="max-h-[360px] overflow-y-auto">
+          {activeCategory.items.map((item) => (
+            <div
+              key={item.name}
+              className="grid grid-cols-4 items-center px-4 py-2 text-sm text-slate-700 odd:bg-white even:bg-slate-50/70"
+            >
+              <span className="font-semibold text-slate-900">{item.name}</span>
+              <span className="text-slate-500">{item.eng}</span>
+              <span className="font-semibold text-slate-900">{getHotPrice(item)}</span>
+              <span className="font-semibold text-slate-900">{getIcedPrice(item)}</span>
+            </div>
+          ))}
+        </div>
       </div>
-
-      <div className="mt-6 text-sm text-gray-600">
-        {optionInfo.map((info, idx) => (
-          <div key={idx}>※ {info}</div>
+      <div className="space-y-1 rounded-2xl bg-slate-50 px-4 py-2 text-xs text-slate-600">
+        {optionInfo.map((info) => (
+          <p key={info}>※ {info}</p>
         ))}
       </div>
     </section>
   );
 };
 
-export default DesktopMenu; 
+export default DesktopMenu;

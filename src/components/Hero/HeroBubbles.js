@@ -8,44 +8,37 @@ const HeroBubbles = () => {
   const bubbles = [
     {
       className:
-        // 모바일: 왼쪽 상단, 데스크탑: 왼쪽 상단
-        'absolute w-8 h-8 -left-4 top-0 opacity-60 z-0 pointer-events-none bubble-float ' +
-        'md:w-10 md:h-10 md:left-[-16px] md:top-[-12px]',
+        'pointer-events-none absolute -left-4 top-0 h-8 w-8 opacity-60 animate-bubbleFloat md:-left-4 md:-top-3 md:h-10 md:w-10',
       color: '#2563eb',
     },
     {
       className:
         // 모바일: 오른쪽 상단, 데스크탑: 왼쪽 중상단
-        'absolute w-7 h-7 right-0 top-8 opacity-40 z-0 pointer-events-none bubble-float2 ' +
-        'md:w-8 md:h-8 md:left-[32px] md:top-[16px]',
+        'pointer-events-none absolute right-0 top-8 h-7 w-7 opacity-40 animate-bubbleFloatAlt md:left-8 md:top-4 md:h-8 md:w-8',
       color: '#60a5fa',
     },
     {
       className:
         // 모바일: 오른쪽 중간, 데스크탑: 오른쪽 상단
-        'absolute w-10 h-10 right-2 top-1/3 opacity-50 z-0 pointer-events-none bubble-float3 ' +
-        'md:w-12 md:h-12 md:right-[-12px] md:top-[4px]',
+        'pointer-events-none absolute right-2 top-1/3 h-10 w-10 opacity-50 animate-bubbleFloat md:-right-3 md:top-1 md:h-12 md:w-12',
       color: '#3b82f6',
     },
     {
       className:
         // 모바일: 오른쪽 하단, 데스크탑: 오른쪽 하단
-        'absolute w-7 h-7 right-1 bottom-2 opacity-40 z-0 pointer-events-none bubble-float4 ' +
-        'md:w-8 md:h-8 md:right-[28px] md:bottom-[16px]',
+        'pointer-events-none absolute right-1 bottom-2 h-7 w-7 opacity-40 animate-bubbleFloatAlt md:right-7 md:bottom-4 md:h-8 md:w-8',
       color: '#2563eb',
     },
     {
       className:
         // 모바일: 왼쪽 하단, 데스크탑: 왼쪽 하단
-        'absolute w-8 h-8 left-2 bottom-2 opacity-60 z-0 pointer-events-none bubble-float ' +
-        'md:w-7 md:h-7 md:left-[18px] md:bottom-[-10px]',
+        'pointer-events-none absolute left-2 bottom-2 h-8 w-8 opacity-60 animate-bubbleFloat md:left-4 md:-bottom-2 md:h-7 md:w-7',
       color: '#60a5fa',
     },
     {
       className:
         // 모바일: 상단 중앙, 데스크탑: 오른쪽 상단
-        'absolute w-6 h-6 left-1/3 -translate-x-1/2 top-3 opacity-70 z-0 pointer-events-none bubble-float2 ' +
-        'md:w-6 md:h-6 md:right-[60px] md:left-auto md:top-[40px]',
+        'pointer-events-none absolute left-1/3 top-3 h-6 w-6 -translate-x-1/2 opacity-70 animate-bubbleFloatAlt md:left-auto md:right-16 md:top-10',
       color: '#2563eb',
     },
   ];

@@ -14,40 +14,51 @@ const STORE_TABLE = [
 export default function TogobagModal({ isOpen, onClose }) {
   return (
     <BaseModal isOpen={isOpen} onClose={onClose} className={MODAL_CONTAINER_CLASS}>
-      <button
-        aria-label="닫기"
-        className="absolute top-3 right-3 text-gray-400 hover:text-gray-700 text-2xl font-bold outline-none"
-        tabIndex={0}
-        onClick={onClose}
-        onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') onClose(); }}
-      >
-        ×
-      </button>
-      <h2 className="text-xl font-bold mb-2 text-center">매장 운영 정보</h2>
-      <div className="text-sm text-gray-700 mb-3 text-center">
-        <div className="mb-1">학기중 : <span className="font-semibold">08:50~19:00</span></div>
-        <div className="mb-1">방학중 : <span className="font-semibold">09:00~17:30</span></div>
-        <div className="text-xs text-gray-500 mt-2">주말 및 공휴일은 휴무이며,<br/>각 매장 상황에 따라 운영시간은 변경될 수 있음.</div>
-      </div>
-      <div className="w-full overflow-x-auto mt-4">
-        <table className="w-full rounded-xl shadow-lg bg-white overflow-hidden text-center text-sm">
-          <thead>
-            <tr className="bg-blue-50 text-blue-900 font-bold border-b-2 border-blue-200">
-              <th className="px-4 py-2">캠퍼스</th>
-              <th className="px-4 py-2">매장명</th>
-              <th className="px-4 py-2">매장위치</th>
-            </tr>
-          </thead>
-          <tbody>
-            {STORE_TABLE.map((row, i) => (
-              <tr key={i} className={`transition-colors ${i%2===0 ? 'bg-white' : 'bg-blue-50'} hover:bg-blue-100`}>
-                <td className="px-4 py-2 whitespace-nowrap border-b border-blue-100">{row.campus}</td>
-                <td className="px-4 py-2 whitespace-nowrap border-b border-blue-100">{row.name}</td>
-                <td className="px-4 py-2 whitespace-nowrap border-b border-blue-100">{row.location}</td>
+      <div className="space-y-6">
+        <div className="flex items-start justify-between">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wide text-brand-blue">
+              To-go Info
+            </p>
+            <h3 className="mt-2 text-2xl font-bold text-slate-900">매장 운영 정보</h3>
+            <p className="mt-2 text-sm text-slate-500">
+              학기중 08:50~19:00 · 방학중 09:00~17:30 (주말/공휴일 휴무)
+            </p>
+          </div>
+          <button
+            type="button"
+            aria-label="닫기"
+            onClick={onClose}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-2xl text-slate-500 shadow-sm"
+          >
+            ×
+          </button>
+        </div>
+        <div className="overflow-x-auto rounded-[24px] border border-slate-100">
+          <table className="min-w-full divide-y divide-slate-100 text-sm">
+            <thead className="bg-slate-50 text-left font-semibold text-slate-600">
+              <tr>
+                <th className="px-4 py-3">캠퍼스</th>
+                <th className="px-4 py-3">매장명</th>
+                <th className="px-4 py-3">위치</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-slate-100 bg-white">
+              {STORE_TABLE.map((row) => (
+                <tr key={row.campus}>
+                  <td className="whitespace-nowrap px-4 py-3 font-semibold text-slate-900">
+                    {row.campus}
+                  </td>
+                  <td className="px-4 py-3 text-slate-600">{row.name}</td>
+                  <td className="px-4 py-3 text-slate-600">{row.location}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-center text-xs text-slate-500">
+          각 매장 상황에 따라 운영시간은 변동될 수 있습니다.
+        </p>
       </div>
     </BaseModal>
   );

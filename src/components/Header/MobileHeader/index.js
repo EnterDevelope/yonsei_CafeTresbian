@@ -1,130 +1,191 @@
-import React from 'react';
-import styles from './styles.module.css';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { trackButtonClick } from '../../../shared/utils/gtm';
 
 const MobileHeader = ({ onContactClick, onMenuClick }) => {
-  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const drawerRef = useRef(null);
+  const { pathname } = useLocation();
 
-  React.useEffect(() => {
-    if (!isDrawerOpen) return;
-    const handleEsc = (e) => { if (e.key === 'Escape') setIsDrawerOpen(false); };
-    document.addEventListener('keydown', handleEsc);
-    return () => document.removeEventListener('keydown', handleEsc);
+  const navItems = [
+    { id: 'menu', label: '메뉴', type: 'action' },
+    { id: 'services', label: '서비스', to: '/services' },
+    { id: 'about', label: '소개', to: '/about' },
+  ];
+
+  useEffect(() => {
+    if (!isDrawerOpen) {
+      return undefined;
+    }
+
+    const drawerEl = drawerRef.current;
+    const focusableElements = drawerEl
+      ? drawerEl.querySelectorAll('button, a')
+      : [];
+    const firstFocusable = focusableElements[0];
+    const lastFocusable =
+      focusableElements[focusableElements.length - 1];
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsDrawerOpen(false);
+      }
+
+      if (event.key === 'Tab' && focusableElements.length > 0) {
+        if (event.shiftKey && document.activeElement === firstFocusable) {
+          event.preventDefault();
+          lastFocusable.focus();
+        } else if (!event.shiftKey && document.activeElement === lastFocusable) {
+          event.preventDefault();
+          firstFocusable.focus();
+        }
+      }
+    };
+
+    firstFocusable?.focus();
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isDrawerOpen]);
 
-  const scrollToSection = (id) => {
-    if (id === 'top') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      const section = document.getElementById(id);
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
+  const emitNavEvent = (id) => {
+    const eventName = {
+      menu: 'menu_button_click',
+      services: 'services_button_click',
+      about: 'about_button_click',
+    }[id];
 
-  const handleMenuButtonClick = () => {
-    window.dataLayer && window.dataLayer.push({
-      event: 'menu_button_click',
-      location: 'header',
-      device: 'mobile',
-      page_path: window.location.pathname
-    });
-    setIsDrawerOpen(true);
-  };
-
-  const handleDrawerMenuClick = (menuName) => {
-    let eventName = '';
-    if (menuName === 'menu') eventName = 'menu_button_click';
-    if (menuName === 'services') eventName = 'services_button_click';
-    if (menuName === 'about') eventName = 'about_button_click';
     if (eventName) {
       window.dataLayer && window.dataLayer.push({
         event: eventName,
         location: 'header',
         device: 'mobile',
-        page_path: window.location.pathname
+        page_path: window.location.pathname,
       });
-    }
-    setIsDrawerOpen(false);
-    if (menuName === 'menu') {
-      onMenuClick();
-    } else if (menuName === 'services') {
-      scrollToSection('services');
-    } else if (menuName === 'about') {
-      scrollToSection('about');
     }
   };
 
-  const handleDrawerClose = () => {
+  const handleMenuToggle = () => {
+    emitNavEvent('menu');
+    setIsDrawerOpen(true);
+  };
+
+  const handleDrawerClose = () => setIsDrawerOpen(false);
+
+  const handleDrawerNavClick = (item) => {
+    emitNavEvent(item.id);
     setIsDrawerOpen(false);
+    if (item.type === 'action') {
+      onMenuClick();
+    }
+  };
+
+  const handleContactButtonClick = () => {
+    trackButtonClick('contact_button', 'mobile_header_drawer');
+    setIsDrawerOpen(false);
+    onContactClick();
   };
 
   return (
     <>
-      <header className={styles.header}>
-        <div className={styles.headerContainer}>
-          <div className={styles.logoArea}>
-            <img
-              src={process.env.PUBLIC_URL + '/cafe_logo.png'}
-              alt="Cafe Trebien Logo"
-              className={styles.logoImg}
-            />
-          </div>
-
+      <header className="fixed inset-x-0 top-0 z-[1000] border-b border-white/60 bg-white/90 backdrop-blur">
+        <div className="mx-auto flex h-16 w-full max-w-content-lg items-center justify-between px-4">
+          <img
+            src={`${process.env.PUBLIC_URL}/cafe_logo.png`}
+            alt="Cafe Trebien Logo"
+            className="h-12 w-auto"
+          />
           <button
-            className={styles.menuButton}
-            onClick={handleMenuButtonClick}
+            type="button"
             aria-label="메뉴 열기"
+            onClick={handleMenuToggle}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm"
           >
-            <span className={styles.menuIcon}></span>
+            <span className="flex w-5 flex-col gap-1">
+              <span className="h-0.5 w-full rounded-full bg-slate-800" />
+              <span className="h-0.5 w-3/4 rounded-full bg-slate-800" />
+              <span className="h-0.5 w-full rounded-full bg-slate-800" />
+            </span>
           </button>
         </div>
       </header>
 
-
-    {isDrawerOpen && (
-      <>
-        <div className={styles.drawerOverlay} onClick={handleDrawerClose} />
-        <nav className={styles.drawer}>
-          <button
-            className={styles.drawerCloseBtn}
+      {isDrawerOpen && (
+        <div className="fixed inset-0 z-[1100]">
+          <div
+            className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
             onClick={handleDrawerClose}
-            aria-label="닫기"
+            aria-hidden="true"
+          />
+          <nav
+            ref={drawerRef}
+            className="relative ml-auto flex h-full w-full max-w-xs flex-col gap-8 rounded-l-3xl bg-white px-6 pb-10 pt-6 shadow-2xl"
+            aria-label="모바일 내비게이션"
           >
-            ×
-          </button>
-          <ul className={styles.drawerMenuList}>
-            <li>
+            <div className="flex items-center justify-between">
+              <p className="text-sm font-semibold text-slate-500">Navigation</p>
               <button
-                className={styles.drawerMenuBtn}
-                onClick={() => handleDrawerMenuClick('menu')}
+                type="button"
+                aria-label="닫기"
+                onClick={handleDrawerClose}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-100 bg-white shadow-sm"
               >
-                메뉴
+                ×
               </button>
-            </li>
-            <li>
+            </div>
+            <ul className="flex flex-col gap-4 text-lg font-semibold text-slate-700">
+              {navItems.map((item) =>
+                item.type === 'action' ? (
+                  <li key={item.id}>
+                    <button
+                      type="button"
+                      onClick={() => handleDrawerNavClick(item)}
+                      className="flex w-full items-center justify-between rounded-2xl bg-slate-50 px-4 py-3"
+                    >
+                      {item.label}
+                      <span aria-hidden>›</span>
+                    </button>
+                  </li>
+                ) : (
+                  <li key={item.id}>
+                    <Link
+                      to={item.to}
+                      onClick={() => {
+                        handleDrawerNavClick(item);
+                      }}
+                      className={`flex w-full items-center justify-between rounded-2xl px-4 py-3 ${
+                        pathname === item.to
+                          ? 'bg-brand-blue/10 text-brand-blue'
+                          : 'bg-slate-50 hover:bg-slate-100'
+                      }`}
+                      aria-current={pathname === item.to ? 'page' : undefined}
+                    >
+                      {item.label}
+                      <span aria-hidden>›</span>
+                    </Link>
+                  </li>
+                ),
+              )}
+            </ul>
+            <div className="mt-auto space-y-3 rounded-2xl bg-slate-50 p-4">
+              <p className="text-sm font-medium text-slate-500">
+                운영 시간
+              </p>
+              <p className="text-base font-semibold text-slate-800">
+                평일 08:00 - 19:00
+              </p>
               <button
-                className={styles.drawerMenuBtn}
-                onClick={() => handleDrawerMenuClick('services')}
+                type="button"
+                onClick={handleContactButtonClick}
+                className="flex w-full items-center justify-center rounded-pill bg-brand-blue px-4 py-3 text-base font-semibold text-white shadow-card"
               >
-                서비스
+                문의하기
               </button>
-            </li>
-            <li>
-              <button
-                className={styles.drawerMenuBtn}
-                onClick={() => handleDrawerMenuClick('about')}
-              >
-                소개
-              </button>
-            </li>
-          </ul>
-        </nav>
-      </>
-    )}
+            </div>
+          </nav>
+        </div>
+      )}
     </>
   );
 };
 
-export default MobileHeader; 
+export default MobileHeader;

@@ -1,90 +1,89 @@
 import React from 'react';
 import HeroBubbles from '../HeroBubbles';
 
-const DesktopHero = ({ onContactClick }) => {
-  console.log('DesktopHero rendering'); // 디버깅용 로그
+const heroHighlights = [
+  '합리적 가격',
+  '간편 포장',
+  '행사 맞춤 디저트·음료',
+];
+
+const DesktopHero = () => {
+  const handleScrollTo = (targetId, eventName) => {
+    const element = document.getElementById(targetId) || document.getElementById('services');
+    element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    window.dataLayer && window.dataLayer.push({
+      event: eventName,
+      location: 'hero',
+      page_path: window.location.pathname,
+    });
+  };
 
   return (
-    // Hero 섹션 전체 래퍼
-    <section className="py-12 bg-[var(--color-background)] overflow-hidden" id="hero">
-      {/* Hero 컨테이너 */}
-      <div className="max-w-[1200px] mx-auto px-6 flex items-center gap-16">
-        {/* 텍스트 영역 */}
-        <div className="flex-1 max-w-[580px] z-[1]">
-          <h1 className="text-[var(--font-size-h1)] font-bold text-[var(--color-text-primary)] leading-tight mb-6">
-            동아리 행사·세미나도 <br />
-            <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent-indigo)] bg-clip-text text-transparent font-bold px-0.5">트레비앙에서!</span> <br />
-            맞춤 케이터링 & To-go Bag
-          </h1>
-          <p className="text-[var(--color-text-secondary)] text-lg leading-normal mb-8">
-            합리적 가격·간편 포장·행사 맞춤 디저트·음료 제공
-          </p>
-          {/* CTA 버튼 영역 */}
-          <div className="flex gap-5 mt-9">
+    <section className="relative isolate overflow-hidden bg-white" id="hero">
+      <div className="mx-auto flex w-full max-w-content-lg flex-col gap-12 px-4 py-16 lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-14 lg:px-8 lg:py-24">
+        <div className="space-y-8">
+          <div className="inline-flex items-center gap-2 rounded-pill border border-brand-blue/20 bg-brand-blue/5 px-4 py-1 text-sm font-semibold text-brand-blue">
+            Yonsei Café Trebien
+          </div>
+          <div className="space-y-5">
+            <h1 className="text-4xl font-extrabold leading-tight text-slate-900 lg:text-5xl">
+              동아리 행사·세미나 준비,
+              <br />
+              <span className="bg-gradient-to-r from-brand-blue to-brand-indigo bg-clip-text text-transparent">
+                트레비앙에서!
+              </span>
+              <br />
+              맞춤 케이터링 &amp; To-go Bag
+            </h1>
+            <p className="text-lg text-slate-600">
+              합리적 예산으로 간편하게 준비하는 행사. 트레비앙이 디저트와 음료를
+              맞춤으로 챙겨드립니다.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            {heroHighlights.map((item) => (
+              <span
+                key={item}
+                className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm ring-1 ring-slate-100"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-4">
             <button
-              className="text-base font-semibold py-2.5 px-6 border-none rounded-full shadow-[0_2px_12px_rgba(37,99,235,0.11)] cursor-pointer transition-colors duration-150 outline-none bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] focus:bg-[var(--color-primary-dark)] hover:-translate-y-0.5 hover:scale-[1.04]"
-              onClick={() => {
-                const cateringCard = document.getElementById('catering-service-card');
-                if (cateringCard) {
-                  cateringCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                } else {
-                  const servicesSection = document.getElementById('services');
-                  if (servicesSection) {
-                    servicesSection.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }
-                // GA4 이벤트 전송
-                window.dataLayer && window.dataLayer.push({
-                  event: 'catering_cta_click',
-                  location: 'hero',
-                  page_path: window.location.pathname
-                });
-              }}
-              tabIndex={0}
+              type="button"
               aria-label="케이터링 알아보기"
+              onClick={() => handleScrollTo('catering-service-card', 'catering_cta_click')}
+              className="rounded-pill bg-brand-blue px-6 py-3 text-base font-semibold text-white shadow-card transition hover:-translate-y-0.5 hover:bg-brand-blueDark"
             >
               케이터링 알아보기
             </button>
             <button
-              className="text-base font-semibold py-2.5 px-6 border-none rounded-full shadow-[0_2px_12px_rgba(37,99,235,0.11)] cursor-pointer transition-colors duration-150 outline-none bg-white text-[var(--color-primary)] border-2 border-[var(--color-primary)] shadow-[0_2px_12px_rgba(37,99,235,0.07)] hover:bg-[#f1f5ff] hover:text-[var(--color-primary-dark)] hover:border-[var(--color-primary-dark)] focus:bg-[#f1f5ff] focus:text-[var(--color-primary-dark)] focus:border-[var(--color-primary-dark)] hover:-translate-y-0.5 hover:scale-[1.04]"
-              onClick={() => {
-                const togoCard = document.getElementById('togo-service-card');
-                if (togoCard) {
-                  togoCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                } else {
-                  const servicesSection = document.getElementById('services');
-                  if (servicesSection) {
-                    servicesSection.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }
-                // GA4 이벤트 전송
-                window.dataLayer && window.dataLayer.push({
-                  event: 'togo_cta_click',
-                  location: 'hero',
-                  page_path: window.location.pathname
-                });
-              }}
-              tabIndex={0}
+              type="button"
               aria-label="To-go 서비스 안내"
+              onClick={() => handleScrollTo('togo-service-card', 'togo_cta_click')}
+              className="rounded-pill border border-brand-blue/30 bg-white px-6 py-3 text-base font-semibold text-brand-blue shadow-sm transition hover:-translate-y-0.5 hover:bg-brand-blue/5"
             >
               To-go 서비스 안내
             </button>
           </div>
         </div>
-        {/* 이미지 영역 */}
-        <div className="flex-1 flex flex-col items-center relative overflow-visible">
-          {/* 애니메이션 원 그룹 */}
-          <HeroBubbles variant="desktop" />
-          <img
-            src={`${process.env.PUBLIC_URL}/cafe_image.png`}
-            alt="카페 내부"
-            className="relative z-10 w-full max-w-[400px] h-auto rounded-2xl shadow-md object-cover aspect-[16/10] block mx-auto"
-            loading="lazy"
-            onError={(e) => {
-              console.error('Image failed to load:', e.target.src);
-              e.target.style.display = 'none';
-            }}
-          />
+        <div className="relative flex items-center justify-center">
+          <div className="relative w-full max-w-md">
+            <div className="absolute inset-0 rounded-[32px] bg-hero-gradient blur-3xl" aria-hidden />
+            <HeroBubbles />
+            <img
+              src={`${process.env.PUBLIC_URL}/cafe_image.png`}
+              alt="카페 내부"
+              loading="lazy"
+              className="relative z-10 w-full rounded-[32px] border border-white/70 object-cover shadow-floating"
+            />
+            <div className="absolute -bottom-6 right-6 z-20 rounded-2xl bg-white/95 px-5 py-4 text-sm font-semibold text-slate-700 shadow-card">
+              하단의 매장 운영 정보를 확인해주세요!
+            </div>
+          </div>
         </div>
       </div>
     </section>
